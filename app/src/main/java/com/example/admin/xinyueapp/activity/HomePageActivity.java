@@ -55,7 +55,10 @@ public class HomePageActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+<<<<<<< HEAD
 
+=======
+>>>>>>> d29eeeb7ef1bcf270da78953b424c6d151b8b807
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
         HeWeather.getWeatherNow(this, "CN101010100", Lang.CHINESE_SIMPLIFIED, Unit.METRIC,
