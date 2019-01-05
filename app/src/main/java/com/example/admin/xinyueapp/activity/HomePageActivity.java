@@ -1,7 +1,9 @@
 package com.example.admin.xinyueapp.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import java.util.List;
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
+import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -32,6 +35,16 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=0;
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+        HeConfig.switchToFreeServerNode();
+        HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeWeather.getWeatherNow(this, "CN101010100", Lang.CHINESE_SIMPLIFIED, Unit.METRIC,
                 new HeWeather.OnResultWeatherNowBeanListener() {
                     @Override
