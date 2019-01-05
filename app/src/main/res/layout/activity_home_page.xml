@@ -68,7 +68,7 @@
                 android:layout_below="@id/setting"
                 android:layout_weight="8"
                 android:textColor="#006aff"
-                android:text="4℃"
+
                 android:gravity="center"
                 android:textSize="100sp" />
 
