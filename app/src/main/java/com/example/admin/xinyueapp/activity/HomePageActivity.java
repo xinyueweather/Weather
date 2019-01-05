@@ -29,6 +29,7 @@ import java.util.List;
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
+import interfaces.heweather.com.interfacesmodule.bean.weather.now.NowBase;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
@@ -55,10 +56,8 @@ public class HomePageActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-<<<<<<< HEAD
-
-=======
->>>>>>> d29eeeb7ef1bcf270da78953b424c6d151b8b807
+        ////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
         HeWeather.getWeatherNow(this, "CN101010100", Lang.CHINESE_SIMPLIFIED, Unit.METRIC,
@@ -69,10 +68,13 @@ public class HomePageActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    //List<NOW>,NOW为和风SDK自带的bean，是“now”，也就是{cloud:0........}
                     public void onSuccess(List<Now> dataObject) {
-                       // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+                        Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+
                         Gson gson = new Gson();
-                        String jsondata = gson.toJson(dataObject);
+                        String jsondata = gson.toJson(dataObject);          //把dataObject转换成json字符串
+
                         //JSONObject jsonObject = new JSONObject(jsondata);
                         Log.i("Log", "onSuccess: " + jsondata);
                         try
@@ -80,15 +82,16 @@ public class HomePageActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(jsondata);
                             for (int i=0; i < jsonArray.length(); i++)    {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.i("Log", "onSuccess1: " + i);
-                                int tmp = jsonObject.getInt("tmp");
-                                String cond_txt = jsonObject.getString("cond_txt");
-                                String wind_dir = jsonObject.getString("wind_dir");
-                                int wind_sc = jsonObject.getInt("wind_sc");
+                                JSONObject nowBases = jsonObject.getJSONObject("now");
+                                        Log.i("Log", "onSuccess1: " + i);
+                                int tmp = nowBases.getInt("tmp");
+                                String cond_txt = nowBases.getString("cond_txt");
+                                String wind_dir = nowBases.getString("wind_dir");
+                                int wind_sc = nowBases.getInt("wind_sc");
                                 TextView textView = (TextView)findViewById(R.id.temp);
-                                textView.setText(cond_txt);
+                                textView.setText(tmp+"℃");
 
-                                System.out.println("温度" + tmp + ";天气" + cond_txt + ";风向" + wind_dir + ";风力" + wind_sc);
+
                             }
                         }
                         catch (Exception e)
