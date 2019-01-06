@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddLocationActivity"
-    android:theme="">
+    tools:context=".activity.AddLocationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +20,7 @@
          android:layout_gravity="start"
          android:background="@color/colorPrimary"
          android:inputType="textPersonName"
-         android:queryHint="@string/search_location"
-         />
+         android:queryHint="@string/search_location" />
 
 
         <ListView

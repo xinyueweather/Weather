@@ -98,8 +98,6 @@ public class HomePageActivity extends StartActivity {
 
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
-
-
                         // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
                         Gson gson = new Gson();

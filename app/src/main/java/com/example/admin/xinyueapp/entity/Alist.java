@@ -39,22 +39,22 @@ public class Alist {
          *  summaryList:[{"curTem":"6℃","curStatus":"阴","tolTem":"6℃/0℃"}]
          *  daysList:["date":"1月6日明天",....] ]
          */
-         private List<MySummaryList> mySummaryList;
-         public void setMySummaryList(List<MySummaryList> mySummaryList){
-             this.mySummaryList=mySummaryList;
+         private List<NowList> nowList;
+         public void setMySummaryList(List<NowList> nowList){
+             this.nowList=nowList;
          }
-         public List<MySummaryList> getMySummaryList(){
-             return this.mySummaryList;
+         public List<NowList> getNowList(){
+             return this.nowList;
          }
-        private List<MyDaysList> myDaysList;
-        public void setMyDaysList(List<MyDaysList> myDaysList){
-            this.myDaysList=myDaysList;
+        private List<DaysList> myDaysList;
+        public void setMyDaysList(List<DaysList> daysList){
+            this.myDaysList=daysList;
         }
-        public List<MyDaysList> getMyDaysList(){
+        public List<DaysList> getMyDaysList(){
             return this.myDaysList;
         }
 
-        public static class MySummaryList{
+        public static class NowList{
             /**
              *  summaryList:[{"curTem":"6℃","curStatus":"阴","tolTem":"6℃/0℃"
              */
@@ -71,9 +71,7 @@ public class Alist {
             public String getTolTem(){return this.tolTem;}
             public void setTolTem(String tolTem){this.tolTem=tolTem;}
         }
-
-
-        public static class MyDaysList{
+        public static class DaysList{
             /**
              *  date : 1月6日明天
              *  daySta : 阴

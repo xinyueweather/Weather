@@ -20,16 +20,16 @@ public class AlistModel {
         List<Object> arrays_obj = new ArrayList<>();
 
         for (Alist.MyDataList array : arrays) {
-            List<Alist.MyDataList.MySummaryList> summ = array.getMySummaryList();
+            List<Alist.MyDataList.NowList> summ = array.getNowList();
 
-            List<Alist.MyDataList.MyDaysList> days = array.getMyDaysList();
+            List<Alist.MyDataList.DaysList> days = array.getMyDaysList();
             if (summ != null && summ.size() > 0) {
-                for (Alist.MyDataList.MySummaryList sum : summ) {
+                for (Alist.MyDataList.NowList sum : summ) {
                     arrays_obj.add(sum);
                 }
             }
             if (days != null && days.size() > 0) {
-                for (Alist.MyDataList.MyDaysList day : days) {
+                for (Alist.MyDataList.DaysList day : days) {
                     arrays_obj.add(day);
                 }
             }
@@ -37,10 +37,10 @@ public class AlistModel {
         return arrays_obj;
     }
 
-    private List<Alist.MyDataList.MySummaryList> getSummaryData(int size) {
-        List<Alist.MyDataList.MySummaryList> summ = new ArrayList<>();
+    private List<Alist.MyDataList.NowList> getSummaryData(int size) {
+        List<Alist.MyDataList.NowList> summ = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            Alist.MyDataList.MySummaryList mySumm = new Alist.MyDataList.MySummaryList();
+            Alist.MyDataList.NowList mySumm = new Alist.MyDataList.NowList();
             int a = i + 1;
             mySumm.setNowCondTxt("阴" + a);
             mySumm.setCurTem("1" + a + "℃");
@@ -50,10 +50,10 @@ public class AlistModel {
         return summ;
     }
 
-    private List<Alist.MyDataList.MyDaysList> getDaysData(int size) {
-        List<Alist.MyDataList.MyDaysList> day = new ArrayList<>();
+    private List<Alist.MyDataList.DaysList> getDaysData(int size) {
+        List<Alist.MyDataList.DaysList> day = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            Alist.MyDataList.MyDaysList myDay = new Alist.MyDataList.MyDaysList();
+            Alist.MyDataList.DaysList myDay = new Alist.MyDataList.DaysList();
             int a = i + 1;
             myDay.setDate("2018.12.11 " + a);
           //  myDay.setDaySta(R.drawable.orange);
