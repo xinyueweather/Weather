@@ -1,11 +1,11 @@
 package com.example.admin.xinyueapp.activity;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.admin.xinyueapp.R;
@@ -39,6 +39,7 @@ import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
+
 public class HomePageActivity extends StartActivity {
 
     private RecyclerView mWeatherRv;
@@ -47,25 +48,6 @@ public class HomePageActivity extends StartActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-     /*   Button addCity=(Button) findViewById(R.id.addCity);
-        addCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(HomePageActivity.this,AddLocationActivity.class);
-                startActivity(intent);
-            }
-<<<<<<< HEAD
-        });*/
-
-/*
-        initFruit();//初始化水果数据
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(layoutManager);
-        FruitAdapter adapter=new FruitAdapter(fruitList);
-        recyclerView.setAdapter(adapter);
-*/
         mWeatherRv =(RecyclerView)findViewById(R.id.recycler_view2);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -74,8 +56,6 @@ public class HomePageActivity extends StartActivity {
         WeatherAdapter addapter = new WeatherAdapter();
         mWeatherRv.setAdapter(addapter);
         addapter.setData(new AlistModel().getData());
-
-
 
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
@@ -88,7 +68,7 @@ public class HomePageActivity extends StartActivity {
 
                     @Override
                     public void onSuccess(List<Now> dataObject) {
-                       // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+                        // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
                         Gson gson = new Gson();
                         String jsondata = gson.toJson(dataObject);
                         //JSONObject jsonObject = new JSONObject(jsondata);
@@ -103,9 +83,8 @@ public class HomePageActivity extends StartActivity {
                                 String cond_txt = jsonObject.getString("cond_txt");
                                 String wind_dir = jsonObject.getString("wind_dir");
                                 int wind_sc = jsonObject.getInt("wind_sc");
-                                TextView textView = (TextView)findViewById(R.id.temp);
+                                TextView textView = (TextView)findViewById(R.id.curTem);
                                 textView.setText(cond_txt);
-
                                 System.out.println("温度" + tmp + ";天气" + cond_txt + ";风向" + wind_dir + ";风力" + wind_sc);
                             }
                         }
@@ -115,6 +94,5 @@ public class HomePageActivity extends StartActivity {
                         }
                     }
                 });
-
     }
 }
