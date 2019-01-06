@@ -32,7 +32,7 @@ import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends StartActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=0;
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-        int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
 
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
