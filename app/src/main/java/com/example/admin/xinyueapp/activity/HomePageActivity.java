@@ -68,8 +68,7 @@ public class HomePageActivity extends StartActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-        ////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////
+
 
         mWeatherRv =(RecyclerView)findViewById(R.id.recycler_view2);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -96,28 +95,28 @@ public class HomePageActivity extends StartActivity {
                     //List<NOW>,NOW为和风SDK自带的bean，是“now”，也就是{cloud:0........}
                     public void onSuccess(List<Now> dataObject) {
 
+
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
-                        // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+
+                        Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
                         Gson gson = new Gson();
                         String jsondata = gson.toJson(dataObject);          //把dataObject转换成json字符串
 
-                        //JSONObject jsonObject = new JSONObject(jsondata);
                         Log.i("Log", "onSuccess: " + jsondata);
                         try
                         {
                             JSONArray jsonArray = new JSONArray(jsondata);
                             for (int i=0; i < jsonArray.length(); i++)    {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
                                 JSONObject nowBases = jsonObject.getJSONObject("now");
                                         Log.i("Log", "onSuccess1: " + i);
                                 int tmp = nowBases.getInt("tmp");
                                 String cond_txt = nowBases.getString("cond_txt");
                                 String wind_dir = nowBases.getString("wind_dir");
                                 int wind_sc = nowBases.getInt("wind_sc");
-                                TextView textView = (TextView)findViewById(R.id.temp);
+                                TextView textView = (TextView)findViewById(R.id.curTem);
                                 textView.setText(tmp+"℃");
                             }
                         }

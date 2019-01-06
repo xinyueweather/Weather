@@ -19,12 +19,11 @@
          android:layout_height="wrap_content"
          android:layout_gravity="start"
          android:background="@color/colorPrimary"
-         android:inputType="textPersonName"
-         android:queryHint="@string/search_location" />
+         android:inputType="textPersonName"/>
 
 
         <ListView
-            android:id="@+id/curr_locations"
+            android:id="@+id/locations"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
