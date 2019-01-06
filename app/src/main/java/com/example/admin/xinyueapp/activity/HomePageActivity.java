@@ -5,6 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import com.example.admin.xinyueapp.R;
+import com.example.admin.xinyueapp.adapter.WeatherAdapter;
+
+import com.example.admin.xinyueapp.entity.AlistModel;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,13 +42,16 @@ import interfaces.heweather.com.interfacesmodule.bean.weather.now.NowBase;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
-public class HomePageActivity extends AppCompatActivity {
 
+public class HomePageActivity extends StartActivity {
+
+    private RecyclerView mWeatherRv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+<<<<<<< HEAD
         Button addCity=(Button) findViewById(R.id.addCity);
         addCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +70,17 @@ public class HomePageActivity extends AppCompatActivity {
                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         ////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////
+=======
+        mWeatherRv =(RecyclerView)findViewById(R.id.recycler_view2);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mWeatherRv.setLayoutManager(manager);
+
+        WeatherAdapter addapter = new WeatherAdapter();
+        mWeatherRv.setAdapter(addapter);
+        addapter.setData(new AlistModel().getData());
+
+>>>>>>> 07f4bd595927e9859c7cbbc55ab847e605f66503
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
 
@@ -74,9 +95,13 @@ public class HomePageActivity extends AppCompatActivity {
                     @Override
                     //List<NOW>,NOW为和风SDK自带的bean，是“now”，也就是{cloud:0........}
                     public void onSuccess(List<Now> dataObject) {
+<<<<<<< HEAD
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
 
+=======
+                        // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+>>>>>>> 07f4bd595927e9859c7cbbc55ab847e605f66503
                         Gson gson = new Gson();
                         String jsondata = gson.toJson(dataObject);          //把dataObject转换成json字符串
 
@@ -87,6 +112,7 @@ public class HomePageActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(jsondata);
                             for (int i=0; i < jsonArray.length(); i++)    {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+<<<<<<< HEAD
                                 JSONObject nowBases = jsonObject.getJSONObject("now");
                                         Log.i("Log", "onSuccess1: " + i);
                                 int tmp = nowBases.getInt("tmp");
@@ -97,6 +123,16 @@ public class HomePageActivity extends AppCompatActivity {
                                 textView.setText(tmp+"℃");
 
 
+=======
+                                Log.i("Log", "onSuccess1: " + i);
+                                int tmp = jsonObject.getInt("tmp");
+                                String cond_txt = jsonObject.getString("cond_txt");
+                                String wind_dir = jsonObject.getString("wind_dir");
+                                int wind_sc = jsonObject.getInt("wind_sc");
+                                TextView textView = (TextView)findViewById(R.id.curTem);
+                                textView.setText(cond_txt);
+                                System.out.println("温度" + tmp + ";天气" + cond_txt + ";风向" + wind_dir + ";风力" + wind_sc);
+>>>>>>> 07f4bd595927e9859c7cbbc55ab847e605f66503
                             }
                         }
                         catch (Exception e)
@@ -105,8 +141,5 @@ public class HomePageActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
-
-
 }

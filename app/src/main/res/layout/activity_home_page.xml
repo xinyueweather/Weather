@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
+    android:layout_height="match_parent"
     tools:context=".activity.HomePageActivity">
 
     <HorizontalScrollView
@@ -20,15 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
             <Button
                 android:id="@+id/addCity"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="添加城市" />
+                android:text="@string/search_location" />
 
             <TextView
                 android:id="@+id/showCity"
@@ -43,65 +40,129 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="设置" />
+                android:text="@string/settings" />
         </LinearLayout>
     </HorizontalScrollView>
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView2"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/no1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/no1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/temp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/setting"
-                android:layout_weight="8"
-                android:textColor="#006aff"
-
-                android:gravity="center"
-                android:textSize="100sp" />
-
-            <TextView
-                android:id="@+id/tempSta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/setting"
-                android:layout_weight="1"
-                android:text="晴"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/tempDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/setting"
-                android:layout_weight="1"
-                android:text="5℃/-1℃"
-                android:gravity="center"/>
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="184dp"
-        android:layout_height="192dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
-        app:srcCompat="@drawable/ll11111" />
-
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+    <!--
+       <HorizontalScrollView
+           android:id="@+id/horizontalScrollView2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:fillViewport="true"
+           app:layout_constraintTop_toBottomOf="@+id/no1"
+           tools:ignore="MissingConstraints"
+           tools:layout_editor_absoluteX="16dp">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <TextView
+                   android:id="@+id/temp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/setting"
+                   android:layout_weight="8"
+                   android:textColor="#006aff"
+                   android:text="4℃"
+                   android:gravity="center"
+                   android:textSize="100sp" />
+
+               <TextView
+                   android:id="@+id/tempSta"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/setting"
+                   android:layout_weight="1"
+                   android:text="晴"
+                   android:gravity="center" />
+
+               <TextView
+                   android:id="@+id/tempDetail"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/setting"
+                   android:layout_weight="1"
+                   android:text="5℃/-1℃"
+                   android:gravity="center"/>
+
+           </LinearLayout>
+       </HorizontalScrollView>
+
+       <ImageView
+           android:id="@+id/imageView"
+           android:layout_width="184dp"
+           android:layout_height="192dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginLeft="16dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
+           app:srcCompat="@drawable/ll11111" />
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recycler_view"
+           android:layout_width="0dp"
+           android:layout_height="85dp"
+
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/imageView"></android.support.v7.widget.RecyclerView>
+   -->
+
+    <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/setting"
+                    android:layout_weight="8"
+                    android:textColor="#006aff"
+
+                    android:gravity="center"
+                    android:textSize="100sp" />
+
+                <TextView
+                    android:id="@+id/tempSta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/setting"
+                    android:layout_weight="1"
+                    android:text="晴"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tempDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/setting"
+                    android:layout_weight="1"
+                    android:text="5℃/-1℃"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+    </android.support.constraint.ConstraintLayout>-->
