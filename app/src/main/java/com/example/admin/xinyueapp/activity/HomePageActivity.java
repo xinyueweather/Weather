@@ -69,6 +69,7 @@ public class HomePageActivity extends StartActivity {
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 
+
         mWeatherRv =(RecyclerView)findViewById(R.id.recycler_view2);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -94,11 +95,15 @@ public class HomePageActivity extends StartActivity {
                     //List<NOW>,NOW为和风SDK自带的bean，是“now”，也就是{cloud:0........}
                     public void onSuccess(List<Now> dataObject) {
 
+
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+
+
+                        Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+
                         Gson gson = new Gson();
                         String jsondata = gson.toJson(dataObject);          //把dataObject转换成json字符串
 
-                        //JSONObject jsonObject = new JSONObject(jsondata);
                         Log.i("Log", "onSuccess: " + jsondata);
                         try
                         {
