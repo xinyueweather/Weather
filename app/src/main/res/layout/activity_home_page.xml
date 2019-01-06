@@ -6,16 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomePageActivity">
 
-    <HorizontalScrollView
-        android:id="@+id/no1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
         <LinearLayout
+            android:id="@+id/no1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -41,19 +33,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/settings" />
-
-            <TextView
-                android:id="@+id/temp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/setting"
-                android:layout_weight="8"
-                android:textColor="#006aff"
-                android:text="4℃"
-                android:gravity="center"
-                android:textSize="100sp" />
+            
         </LinearLayout>
-    </HorizontalScrollView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view2"
