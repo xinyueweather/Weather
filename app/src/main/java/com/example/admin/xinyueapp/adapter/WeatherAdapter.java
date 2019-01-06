@@ -12,7 +12,7 @@ import com.example.admin.xinyueapp.entity.Alist;
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private int ITEM_SUMMARY = 1;
+    private int ITEM_NOW = 1;
     private int ITEM_DAYS = 2;
     private List<Object> objects;
 
@@ -40,12 +40,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolderNow) {
-            Alist.MyDataList.MySummaryList data = (Alist.MyDataList.MySummaryList) objects.get(position);
+            Alist.MyDataList.NowList data = (Alist.MyDataList.NowList) objects.get(position);
             ((ViewHolderNow) holder).mCurTemTv.setText("6℃");
             ((ViewHolderNow) holder).mCurStatusTv.setText("阴");
             ((ViewHolderNow) holder).mTolTemTv.setText("6℃/0℃");
         } else if (holder instanceof ViewHolderDays) {
-            Alist.MyDataList.MyDaysList data = (Alist.MyDataList.MyDaysList) objects.get(position);
+            Alist.MyDataList.DaysList data = (Alist.MyDataList.DaysList) objects.get(position);
             ((ViewHolderDays) holder).mDateTv.setText("1月3日");
             //((ViewHolderDays) holder).mDayStaIv.setImageResource(R.drawable.apple);
             ((ViewHolderDays) holder).mDayTemTv.setText("6℃/0℃");
@@ -54,9 +54,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (objects.get(position) instanceof Alist.MyDataList.MySummaryList) {
-            return ITEM_SUMMARY;
-        } else if (objects.get(position) instanceof Alist.MyDataList.MyDaysList) {
+        if (objects.get(position) instanceof Alist.MyDataList.NowList) {
+            return ITEM_NOW;
+        } else if (objects.get(position) instanceof Alist.MyDataList.DaysList) {
             return ITEM_DAYS;
         }
         return super.getItemViewType(position);
