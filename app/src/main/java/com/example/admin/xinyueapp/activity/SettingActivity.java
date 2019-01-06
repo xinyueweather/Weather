@@ -4,7 +4,7 @@ import com.example.admin.xinyueapp.R;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends StartActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

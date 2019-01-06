@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">心悦天气BLING</string>
+    <string name="app_name">Xinyue Weather</string>
+    <string name="search_location">Search Location</string>
+    <string name="settings">Settings</string>
 </resources>
