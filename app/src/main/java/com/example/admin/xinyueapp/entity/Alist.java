@@ -89,6 +89,10 @@ public class Alist {
 
             public String getDayTem(){return this.dayTem;}
             public void setDayTem(String dayTem){this.dayTem=dayTem;}
+        }
+        public static class HourlyList{
+            private String hTime;
+            private String hTem;
 
         }
     }

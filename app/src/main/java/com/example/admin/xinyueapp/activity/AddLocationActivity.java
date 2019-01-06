@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.admin.xinyueapp.R;
 public class AddLocationActivity extends StartActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
