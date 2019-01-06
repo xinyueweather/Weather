@@ -21,3 +21,4 @@ public class AddLocationActivity extends StartActivity {
         locationSearch.setIconifiedByDefault(false);
     }
 }
+ 

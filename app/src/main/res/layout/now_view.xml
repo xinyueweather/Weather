@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/curTem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="8"
+        android:gravity="center"
+        android:text="10℃"
+        android:textColor="#006aff"
+        android:textSize="100sp" />
+
+    <TextView
+        android:id="@+id/curStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/curTem"
+        android:layout_weight="1"
+        android:text="晴"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tolTem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/curStatus"
+        android:layout_weight="1"
+        android:text="5℃/-1℃"
+        android:gravity="center"/>
+</LinearLayout>

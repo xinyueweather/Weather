@@ -1,10 +1,21 @@
 package com.example.admin.xinyueapp.activity;
 
+<<<<<<< HEAD
+=======
 import android.Manifest;
 import android.content.Intent;
+>>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+<<<<<<< HEAD
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import com.example.admin.xinyueapp.R;
+import com.example.admin.xinyueapp.adapter.WeatherAdapter;
+
+import com.example.admin.xinyueapp.entity.AlistModel;
+=======
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,21 +42,44 @@ import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
+>>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
 
 public class HomePageActivity extends StartActivity {
 
+    private RecyclerView mWeatherRv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        Button addCity=(Button) findViewById(R.id.addCity);
+     /*   Button addCity=(Button) findViewById(R.id.addCity);
         addCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(HomePageActivity.this,AddLocationActivity.class);
                 startActivity(intent);
             }
+<<<<<<< HEAD
+        });*/
+
+/*
+        initFruit();//初始化水果数据
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        FruitAdapter adapter=new FruitAdapter(fruitList);
+        recyclerView.setAdapter(adapter);
+*/
+        mWeatherRv =(RecyclerView)findViewById(R.id.recycler_view2);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mWeatherRv.setLayoutManager(manager);
+
+        WeatherAdapter addapter = new WeatherAdapter();
+        mWeatherRv.setAdapter(addapter);
+        addapter.setData(new AlistModel().getData());
+=======
         });
 
 
@@ -88,7 +122,6 @@ public class HomePageActivity extends StartActivity {
                     }
                 });
 
+>>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
     }
-
-
 }
