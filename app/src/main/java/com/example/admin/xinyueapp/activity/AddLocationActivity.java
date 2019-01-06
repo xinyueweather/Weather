@@ -27,6 +27,9 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     //自动完成的列表
     private final String[] mStrings={"北京","上海","广州","武汉","长沙","成都","重庆","天津","青岛"};
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
