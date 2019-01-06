@@ -1,21 +1,17 @@
 package com.example.admin.xinyueapp.activity;
 
-<<<<<<< HEAD
-=======
+
 import android.Manifest;
 import android.content.Intent;
->>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.admin.xinyueapp.R;
 import com.example.admin.xinyueapp.adapter.WeatherAdapter;
 
 import com.example.admin.xinyueapp.entity.AlistModel;
-=======
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +38,6 @@ import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
->>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
 
 public class HomePageActivity extends StartActivity {
 
@@ -79,8 +74,7 @@ public class HomePageActivity extends StartActivity {
         WeatherAdapter addapter = new WeatherAdapter();
         mWeatherRv.setAdapter(addapter);
         addapter.setData(new AlistModel().getData());
-=======
-        });
+
 
 
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
@@ -122,6 +116,5 @@ public class HomePageActivity extends StartActivity {
                     }
                 });
 
->>>>>>> 8dfe5c7f9873d1473872f990a6489989c2289549
     }
 }
