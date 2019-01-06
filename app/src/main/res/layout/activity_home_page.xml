@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textAllCaps="false"
-                android:text="添加城市" />
+                android:text="@string/search_location" />
 
             <TextView
                 android:id="@+id/showCity"
