@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -60,6 +62,8 @@ public class HomePageActivity extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////////
         HeConfig.init("HE1901050852481925", "f02371a47b794336ad07043678adf705");
         HeConfig.switchToFreeServerNode();
+
+        //HeWeather.getWeatherForecast(Context context, Lang lang, Unit unit, final HeWeather.OnResultWeatherForecastBeanListener listener);
         HeWeather.getWeatherNow(this, "CN101010100", Lang.CHINESE_SIMPLIFIED, Unit.METRIC,
                 new HeWeather.OnResultWeatherNowBeanListener() {
                     @Override
@@ -71,6 +75,7 @@ public class HomePageActivity extends AppCompatActivity {
                     //List<NOW>,NOW为和风SDK自带的bean，是“now”，也就是{cloud:0........}
                     public void onSuccess(List<Now> dataObject) {
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
+
 
                         Gson gson = new Gson();
                         String jsondata = gson.toJson(dataObject);          //把dataObject转换成json字符串
