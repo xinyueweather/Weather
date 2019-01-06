@@ -28,6 +28,5 @@ public class StartActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_PHONE_STATE},
                 MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
-
     }
 }
