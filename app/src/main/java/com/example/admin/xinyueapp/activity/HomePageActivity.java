@@ -98,7 +98,6 @@ public class HomePageActivity extends StartActivity {
 
                         Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
-
                         // Log.i("Log", "onSuccess: " + new Gson().toJson(dataObject));
 
                         Gson gson = new Gson();
@@ -120,10 +119,6 @@ public class HomePageActivity extends StartActivity {
                                 int wind_sc = nowBases.getInt("wind_sc");
                                 TextView textView = (TextView)findViewById(R.id.temp);
                                 textView.setText(tmp+"℃");
-
-
-
-
                             }
                         }
                         catch (Exception e)
