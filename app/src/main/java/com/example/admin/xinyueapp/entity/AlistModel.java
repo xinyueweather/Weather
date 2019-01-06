@@ -22,7 +22,7 @@ public class AlistModel {
         for (Alist.MyDataList array : arrays) {
             List<Alist.MyDataList.NowList> summ = array.getNowList();
 
-            List<Alist.MyDataList.DaysList> days = array.getMyDaysList();
+            List<Alist.MyDataList.DaysList> days = array.getDaysList();
             if (summ != null && summ.size() > 0) {
                 for (Alist.MyDataList.NowList sum : summ) {
                     arrays_obj.add(sum);
@@ -37,7 +37,7 @@ public class AlistModel {
         return arrays_obj;
     }
 
-    private List<Alist.MyDataList.NowList> getSummaryData(int size) {
+    private List<Alist.MyDataList.NowList> getNowData(int size) {
         List<Alist.MyDataList.NowList> summ = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             Alist.MyDataList.NowList mySumm = new Alist.MyDataList.NowList();
@@ -67,8 +67,9 @@ public class AlistModel {
         List<Alist.MyDataList> data = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Alist.MyDataList myData = new Alist.MyDataList();
-            myData.setMySummaryList(getSummaryData(i + 1));
-            myData.setMyDaysList(getDaysData(i + 1));
+           // myData.setNowList(getNowData(i + 1));
+            myData.setNowList(getNowData(i+1));
+            myData.setDaysList(getDaysData(i + 1));
             data.add(myData);
         }
         return data;
