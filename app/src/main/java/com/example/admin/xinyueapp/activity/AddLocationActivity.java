@@ -17,8 +17,13 @@ public class AddLocationActivity extends StartActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
-        SearchView locationSearch = (SearchView) findViewById(R.id.location_search);
+        SearchView mSearch = locationSearch;
         locationSearch.setIconifiedByDefault(false);
+    }
+    SearchView locationSearch = (SearchView) findViewById(R.id.location_search);
+
+    public void initialSearch(){
+
     }
 }
  

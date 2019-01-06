@@ -21,6 +21,7 @@
          android:background="@color/colorPrimary"
          android:inputType="textPersonName"
          android:queryHint="@string/search_location"
+         android:onClick="initialSearch"
          />
 
 
