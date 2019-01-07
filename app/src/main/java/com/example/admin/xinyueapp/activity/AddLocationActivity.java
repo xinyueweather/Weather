@@ -1,43 +1,25 @@
 package com.example.admin.xinyueapp.activity;
 
 import android.app.Activity;
-import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.admin.xinyueapp.R;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import java.io.IOException;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.widget.*;
-import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
-import interfaces.heweather.com.interfacesmodule.bean.basic.Basic;
 import interfaces.heweather.com.interfacesmodule.bean.search.Search;
-import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
-import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AddLocationActivity extends Activity implements SearchView.OnQueryTextListener {
@@ -127,7 +109,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                     String jsondata = gson.toJson(search);          //把dataObject转换成json字符串，存储在jsondata中。
                     try
                     {
-                        JSONObject jsonObject = new JSONObject(jsondata);
+                        JSONObject jsonObject = new JSONObject(jsondata); //将字符串格式的jsondata
                         JSONArray basic = jsonObject.getJSONArray("basic");
                         for (int i=0; i < basic.length(); i++){
                             JSONObject nowBases = basic.getJSONObject(i);
