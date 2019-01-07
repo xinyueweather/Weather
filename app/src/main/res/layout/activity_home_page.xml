@@ -38,404 +38,406 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_context"
+        android:layout_marginBottom="8dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        <LinearLayout
-            android:id="@+id/now"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/nowTem"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:gravity="center"
-                android:text="100 C"
-                android:textColor="#1751cf"
-                android:textSize="100sp" />
-
-            <TextView
-                android:id="@+id/nowCond"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="cloud" />
-
-            <TextView
-                android:id="@+id/curMax_MinTem"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="10 C/20 C" />
-        </LinearLayout>
-
-        <HorizontalScrollView
-            android:id="@+id/hourly"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow1"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond1"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem1"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow2"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond2"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem2"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow3"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond3"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem3"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow4"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond4"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem4"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow5"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond5"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem5"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow6"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond6"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem6"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow7"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond7"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem7"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow8"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond8"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem8"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hNow9"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="现在？" />
-
-                    <ImageView
-                        android:id="@+id/hCond9"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/apple" />
-
-                    <TextView
-                        android:id="@+id/hTem9"
-                        android:layout_width="45dp"
-                        android:layout_height="30dp"
-                        android:text="15 C" />
-                </LinearLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <LinearLayout
-            android:id="@+id/dayly"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/hourly">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dTime1"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:text="1.8 明天" />
-
-                <ImageView
-                    android:id="@+id/dCond1"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/banana" />
-
-                <TextView
-                    android:id="@+id/dMax_MinTem1"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:text="7C/18C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dTime2"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:text="1.8 明天" />
-
-                <ImageView
-                    android:id="@+id/dCond2"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/banana" />
-
-                <TextView
-                    android:id="@+id/dMax_MinTem2"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:text="7C/18C" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dTime3"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:text="1.8 明天" />
-
-                <ImageView
-                    android:id="@+id/dCond3"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/banana" />
-
-                <TextView
-                    android:id="@+id/dMax_MinTem3"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:text="7C/18C" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/comt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/comtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="舒适度" />
 
-            <TextView
-                android:id="@+id/comtWet"
+            <LinearLayout
+                android:id="@+id/now"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="空气湿度"
-                android:textSize="30sp" />
+                android:orientation="vertical">
 
-            <TextView
+                <TextView
+                    android:id="@+id/nowTem"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:text="100 C"
+                    android:textColor="#1751cf"
+                    android:textSize="100sp" />
+
+                <TextView
+                    android:id="@+id/nowCond"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="cloud" />
+
+                <TextView
+                    android:id="@+id/curMax_MinTem"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="10 C/20 C" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/hourly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="68%"
-                android:textSize="30sp" />
-        </LinearLayout>
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow1"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond1"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem1"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow2"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond2"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem2"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow3"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond3"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem3"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow4"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond4"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem4"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow5"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond5"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem5"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow6"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond6"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem6"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow7"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond7"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem7"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow8"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond8"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem8"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hNow9"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="现在？" />
+
+                        <ImageView
+                            android:id="@+id/hCond9"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/apple" />
+
+                        <TextView
+                            android:id="@+id/hTem9"
+                            android:layout_width="45dp"
+                            android:layout_height="30dp"
+                            android:text="15 C" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:id="@+id/dayly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/hourly">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dTime1"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="1.8 明天" />
+
+                    <ImageView
+                        android:id="@+id/dCond1"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/banana" />
+
+                    <TextView
+                        android:id="@+id/dMax_MinTem1"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:text="7C/18C" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dTime2"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="1.8 明天" />
+
+                    <ImageView
+                        android:id="@+id/dCond2"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/banana" />
+
+                    <TextView
+                        android:id="@+id/dMax_MinTem2"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:text="7C/18C" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dTime3"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="1.8 明天" />
+
+                    <ImageView
+                        android:id="@+id/dCond3"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/banana" />
+
+                    <TextView
+                        android:id="@+id/dMax_MinTem3"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:text="7C/18C" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="舒适度" />
+
+                <TextView
+                    android:id="@+id/comtWet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="空气湿度"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="68%"
+                    android:textSize="30sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/comt2"
@@ -463,6 +465,7 @@
                     android:text="68%"
                     android:textSize="30sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/comt3"
                 android:layout_width="match_parent"
@@ -489,6 +492,7 @@
                     android:text="68%"
                     android:textSize="30sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/comt4"
                 android:layout_width="match_parent"
@@ -514,6 +518,37 @@
                     android:layout_height="wrap_content"
                     android:text="68%"
                     android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comt5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comtTitle5"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="测试" />
+
+                <TextView
+                    android:id="@+id/comtWet5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="测试"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
             </LinearLayout>
 
 
