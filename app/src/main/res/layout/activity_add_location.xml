@@ -19,7 +19,9 @@
          android:layout_height="wrap_content"
          android:layout_gravity="start"
          android:background="@color/colorPrimary"
-         android:inputType="textPersonName"/>
+         android:inputType="textPersonName"
+
+         android:queryHint="@string/search_location" />
 
 
         <ListView
