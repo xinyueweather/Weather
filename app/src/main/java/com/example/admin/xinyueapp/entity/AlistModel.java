@@ -1,5 +1,7 @@
 package com.example.admin.xinyueapp.entity;
 
+import com.example.admin.xinyueapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class AlistModel {
             if (summ != null && summ.size() > 0) {
                 for (Alist.MyDataList.NowList sum : summ) {
                     arrays_obj.add(sum);
+
                 }
             }
             if (days != null && days.size() > 0) {
@@ -65,10 +68,10 @@ public class AlistModel {
 
     private List<Alist.MyDataList> getAllData() {
         List<Alist.MyDataList> data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Alist.MyDataList myData = new Alist.MyDataList();
-           // myData.setNowList(getNowData(i + 1));
-            myData.setNowList(getNowData(i+1));
+        Alist.MyDataList myData = new Alist.MyDataList();
+        myData.setNowList(getNowData(1));
+        data.add(myData);
+       for (int i = 0; i < 5; i++) {
             myData.setDaysList(getDaysData(i + 1));
             data.add(myData);
         }
