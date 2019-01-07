@@ -56,8 +56,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
         locations=(ListView)findViewById(R.id.locations);
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,searchResults));
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,admins));
+        freshList();
         //locations.setTextFilterEnabled(true);
 
         locationSearch=(SearchView)findViewById(R.id.location_search);
@@ -71,6 +70,31 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
 
     }
 
+    public boolean clearList(){
+        if (searchResults.size()>0){
+            for(int i = searchResults.size() ; i >= 0 ; i-- ){
+                searchResults.remove(0);
+            }
+        }
+        if (admins.size()>0){
+            for(int i = admins.size() ; i >= 0 ; i-- ){
+                admins.remove(0);
+            }
+        }
+        if (cids.size()>0){
+            for(int i = cids.size() ; i >= 0 ; i-- ){
+                cids.remove(0);
+            }
+        }
+        return true;
+    }
+
+    public boolean freshList(){
+        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,searchResults));
+        //locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,admins));
+        return true;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -81,66 +105,48 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     @Override
     public boolean onQueryTextChange(String newText) {
         // TODO Auto-generated method stub
+        clearList();
+        freshList();
         if(TextUtils.isEmpty(newText))
         {
             //清除ListView
-            if (searchResults.size()>0){
-                for(int i = 0 ; i < searchResults.size() ; i++ ){
-                    searchResults.remove(i);
-                }
-            }
-            if (admins.size()>0){
-                for(int i = 0 ; i < admins.size() ; i++ ){
-                    admins.remove(i);
-                }
-            }
-            if (cids.size()>0){
-                for(int i = 0 ; i < cids.size() ; i++ ){
-                    cids.remove(i);
-                }
-            }
+
         }
         else
         {
-            //使用用户输入的内容对ListView的列表项进行过滤
+            //使用用户输入的内容查询并输出结果
             HeWeather.getSearch(this, newText, "world", 10, Lang.CHINESE_SIMPLIFIED, new HeWeather.OnResultSearchBeansListener() {
+                //基于用户输入，通过和风API获取查询结果
                 @Override
                 public void onError(Throwable throwable) {
                     Log.i("Log", "onError: ", throwable);
                 }
-
                 @Override
                 public void onSuccess(Search search) {
-                    Log.i("Log", "onSuccess: " + new Gson().toJson(search));
                     Gson gson = new Gson();
-                    String jsondata = gson.toJson(search);          //把dataObject转换成json字符串
-                    Log.i("Log", "onSuccess0: " + jsondata);
+                    String jsondata = gson.toJson(search);          //把dataObject转换成json字符串，存储在jsondata中。
                     try
                     {
-                        //Log.i("Log", "onSuccess1: try.");
-                        JSONArray jsonArray = new JSONArray(jsondata);
-                        //Log.i("Log", "onSuccess1: try,try.");
-                        JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        //Log.i("Log", "onSuccess1: try,try,try." + jsonObject);
-                        JSONObject nowBases = jsonObject.getJSONObject("basic");
-                        for (int i=0; i < nowBases.length(); i++){
-                            //Log.i("Log", "onSuccess1: " + i);
+                        JSONObject jsonObject = new JSONObject(jsondata);
+                        JSONArray basic = jsonObject.getJSONArray("basic");
+                        for (int i=0; i < basic.length(); i++){
+                            JSONObject nowBases = basic.getJSONObject(i);
                             searchResults.add(nowBases.getString("location"));
                             String admin = nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city");
                             admins.add(admin);
                             cids.add(nowBases.getString("cid"));
-                            //Log.i("Log","onSuccess2: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
+                            Log.i("Log","onSuccess2: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
                         }
                     }
                     catch (Exception e)
                     {
                         e.printStackTrace();
                     }
+                    freshList();
                 }
 
             });
-            locations.setFilterText(newText);
-
+            //locations.setFilterText(newText);
         }
         return true;
     }
