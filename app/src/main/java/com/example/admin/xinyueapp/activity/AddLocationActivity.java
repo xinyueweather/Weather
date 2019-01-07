@@ -46,9 +46,9 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     private SearchView locationSearch;
     private ListView locations;
     //自动完成的列表
-    private final ArrayList<String> searchResults = new ArrayList<String>();
-    private final ArrayList<String> admins = new ArrayList<String>();
-    private final ArrayList<String> cids = new ArrayList<String>();
+    private final ArrayList<String> searchResults = new ArrayList<>();
+    private final ArrayList<String> admins = new ArrayList<>();
+    private final ArrayList<String> cids = new ArrayList<>();
 
 
     @Override
@@ -83,8 +83,22 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         // TODO Auto-generated method stub
         if(TextUtils.isEmpty(newText))
         {
-            //清除ListView的过滤
-            locations.clearTextFilter();
+            //清除ListView
+            if (searchResults.size()>0){
+                for(int i = 0 ; i < searchResults.size() ; i++ ){
+                    searchResults.remove(i);
+                }
+            }
+            if (admins.size()>0){
+                for(int i = 0 ; i < admins.size() ; i++ ){
+                    admins.remove(i);
+                }
+            }
+            if (cids.size()>0){
+                for(int i = 0 ; i < cids.size() ; i++ ){
+                    cids.remove(i);
+                }
+            }
         }
         else
         {
@@ -100,23 +114,22 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                     Log.i("Log", "onSuccess: " + new Gson().toJson(search));
                     Gson gson = new Gson();
                     String jsondata = gson.toJson(search);          //把dataObject转换成json字符串
-
                     Log.i("Log", "onSuccess0: " + jsondata);
                     try
                     {
-                        Log.i("Log", "onSuccess1: try.");
+                        //Log.i("Log", "onSuccess1: try.");
                         JSONArray jsonArray = new JSONArray(jsondata);
-                        Log.i("Log", "onSuccess1: try,try.");
+                        //Log.i("Log", "onSuccess1: try,try.");
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        Log.i("Log", "onSuccess1: try,try,try." + jsonObject);
+                        //Log.i("Log", "onSuccess1: try,try,try." + jsonObject);
                         JSONObject nowBases = jsonObject.getJSONObject("basic");
                         for (int i=0; i < nowBases.length(); i++){
-                            Log.i("Log", "onSuccess1: " + i);
+                            //Log.i("Log", "onSuccess1: " + i);
                             searchResults.add(nowBases.getString("location"));
                             String admin = nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city");
                             admins.add(admin);
                             cids.add(nowBases.getString("cid"));
-                            Log.i("Log","onSuccess2: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
+                            //Log.i("Log","onSuccess2: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
                         }
                     }
                     catch (Exception e)
@@ -134,11 +147,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     //单击搜索按钮时激发该方法
     @Override
     public boolean onQueryTextSubmit(String query) {
-        // TODO Auto-generated method stub
-        //实际应用中应该在该方法内执行实际查询
-        //此处仅使用Toast显示用户输入的查询内容
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,searchResults));
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,admins));
+        Toast.makeText(getApplicationContext(),this.getString(R.string.please_click_results),Toast.LENGTH_SHORT).show();
         return true;
     }
 }
