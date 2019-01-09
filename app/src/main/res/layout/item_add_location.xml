@@ -5,17 +5,23 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:id="@+id/MyListItem"
-    android:paddingBottom="3sp"
-    android:paddingLeft="10sp">
+    android:paddingBottom="8sp"
+    android:paddingTop="8sp"
+    android:paddingLeft="12sp"
+    android:paddingRight="12sp">
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:id="@+id/ItemTitle"
-        android:textSize="15sp">
+        android:id="@+id/locationText"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="4sp">
     </TextView>
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:id="@+id/ItemText">
+        android:textColor="@color/black"
+        android:id="@+id/adminText">
     </TextView>
 </LinearLayout>

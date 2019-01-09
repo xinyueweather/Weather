@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.admin.xinyueapp.R;
@@ -21,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.search.Search;
@@ -32,10 +34,10 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     private SearchView locationSearch;
     private ListView locations;
     //自动完成的列表
-    private final ArrayList<String> searchResults = new ArrayList<>();
-    private final ArrayList<String> admins = new ArrayList<>();
-    private final ArrayList<String> cids = new ArrayList<>();
-    private final ArrayList<String> itemsShown = new ArrayList<>();
+    ArrayList<String> searchResults = new ArrayList<>();
+    ArrayList<String> admins = new ArrayList<>();
+    ArrayList<String> cids = new ArrayList<>();
+    ArrayList<HashMap<String, String>> itemsShown = new ArrayList<HashMap<String, String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,14 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     }
 
     public boolean freshList(){
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itemsShown));
+        locations.setAdapter(new SimpleAdapter(
+                this,
+                itemsShown,//数据来源
+                R.layout.item_add_location,//ListItem的XML实现
+                new String[] {"locationText", "adminText"},//与ListItem对应的子项
+                new int[] {R.id.locationText,R.id.adminText//item_add_location的XML文件里面的两个TextView的id
+                }));
+        //locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itemsShown));
         //locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,admins));
         return true;
     }
@@ -106,7 +115,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         freshList();
         if(TextUtils.isEmpty(newText)) {} else {
             //使用用户输入的内容查询并输出结果
-            HeWeather.getSearch(this, newText, "world", 10, Lang.CHINESE_SIMPLIFIED, new HeWeather.OnResultSearchBeansListener() {
+            HeWeather.getSearch(this, newText, "world", 20, Lang.CHINESE_SIMPLIFIED, new HeWeather.OnResultSearchBeansListener() {
                 //基于用户输入，通过和风API获取查询结果
                 @Override
                 public void onError(Throwable throwable) {
@@ -124,7 +133,10 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                             searchResults.add(nowBases.getString("location"));
                             admins.add(nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city"));
                             cids.add(nowBases.getString("cid"));
-                            itemsShown.add(searchResults.get(i) + " ( " + admins.get(i) + " ) ");
+                            HashMap<String, String> item = new HashMap<String, String>();
+                            item.put("locationText",searchResults.get(i));
+                            item.put("adminText",admins.get(i));
+                            itemsShown.add(item);
                             //Log.i("Log","onSuccess: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
                         }
                     }
@@ -173,7 +185,10 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                     searchResults.add(nowBases.getString("location"));
                     admins.add(nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city"));
                     cids.add(nowBases.getString("cid"));
-                    itemsShown.add(searchResults.get(0) + " ( " + admins.get(0) + " ) ");
+                    HashMap<String, String> item = new HashMap<String, String>();
+                    item.put("locationText",searchResults.get(0));
+                    item.put("adminText", admins.get(0));
+                    itemsShown.add(item);
                     //rLog.i("Log","onSuccess: " + searchResults.get(0) + " , " + admins.get(0) + " , " + cids.get(0));
                 }
                 catch (Exception e) {
