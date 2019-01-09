@@ -1,7 +1,9 @@
 package com.example.admin.xinyueapp.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +35,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     private final ArrayList<String> searchResults = new ArrayList<>();
     private final ArrayList<String> admins = new ArrayList<>();
     private final ArrayList<String> cids = new ArrayList<>();
-
+    private final ArrayList<String> itemsShown = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locations.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(AddLocationActivity.this, id + ", cid : "+ cids.get(position), Toast.LENGTH_LONG).show();
+                Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + itemsShown.get(position) + ", 它的 cid 是: "+ cids.get(position), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -76,11 +78,16 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                 cids.remove(0);
             }
         }
+        if (itemsShown.size()>0){
+            for(int i = itemsShown.size() ; i > 0 ; i-- ){
+                itemsShown.remove(0);
+            }
+        }
         return true;
     }
 
     public boolean freshList(){
-        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,searchResults));
+        locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itemsShown));
         //locations.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,admins));
         return true;
     }
@@ -117,7 +124,8 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                             searchResults.add(nowBases.getString("location"));
                             admins.add(nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city"));
                             cids.add(nowBases.getString("cid"));
-                            Log.i("Log","onSuccess: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
+                            itemsShown.add(searchResults.get(i) + " ( " + admins.get(i) + " ) ");
+                            //Log.i("Log","onSuccess: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
                         }
                     }
                     catch (Exception e) {
@@ -136,6 +144,45 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     public boolean onQueryTextSubmit(String query) {
         Toast.makeText(getApplicationContext(),this.getString(R.string.please_click_results),Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    //点击搜索栏右侧的位置图标时激发该方法
+    public void searchWithGPS(View view){
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                0);
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                0);
+        clearList();
+        freshList();
+        HeWeather.getSearch(this, 10, new HeWeather.OnResultSearchBeansListener() {
+            //基于用户输入，通过和风API获取查询结果
+            @Override
+            public void onError(Throwable throwable) {
+                Log.i("Log", "onError: ", throwable);
+            }
+            @Override
+            public void onSuccess(Search search) {
+                Gson gson = new Gson();
+                String jsondata = gson.toJson(search);          //把dataObject转换成json字符串，存储在jsondata中。
+                try {
+                    JSONObject jsonObject = new JSONObject(jsondata); //将字符串格式的jsondata转为jsonobject
+                    JSONArray basic = jsonObject.getJSONArray("basic");//获取basic字段，也就是真正有用的数据部分
+                    JSONObject nowBases = basic.getJSONObject(0);//获取第 i 个JSON object
+                    searchResults.add(nowBases.getString("location"));
+                    admins.add(nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city"));
+                    cids.add(nowBases.getString("cid"));
+                    itemsShown.add(searchResults.get(0) + " ( " + admins.get(0) + " ) ");
+                    //rLog.i("Log","onSuccess: " + searchResults.get(0) + " , " + admins.get(0) + " , " + cids.get(0));
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                freshList();
+            }
+
+        });
     }
 
 
