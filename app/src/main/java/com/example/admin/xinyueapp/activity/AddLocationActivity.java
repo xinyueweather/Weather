@@ -184,6 +184,4 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
 
         });
     }
-
-
 }
