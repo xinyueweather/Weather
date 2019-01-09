@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -40,6 +42,13 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locations=(ListView)findViewById(R.id.locations);
         freshList();
         //locations.setTextFilterEnabled(true);
+        //点击列表项时激发该方法
+        locations.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(AddLocationActivity.this, id + ", cid : "+ cids.get(position), Toast.LENGTH_LONG).show();
+            }
+        });
 
         locationSearch=(SearchView)findViewById(R.id.location_search);
         //设置该SearchView默认是否自动缩小为图标
@@ -48,8 +57,6 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locationSearch.setOnQueryTextListener(this);
         //设置该SearchView显示搜索按钮
         locationSearch.setSubmitButtonEnabled(true);
-
-
     }
 
     public boolean clearList(){
@@ -130,4 +137,6 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         Toast.makeText(getApplicationContext(),this.getString(R.string.please_click_results),Toast.LENGTH_SHORT).show();
         return true;
     }
+
+
 }
