@@ -53,18 +53,19 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     }
 
     public boolean clearList(){
+        //清空所有ArrayList
         if (searchResults.size()>0){
-            for(int i = searchResults.size() ; i >= 0 ; i-- ){
+            for(int i = searchResults.size() ; i > 0 ; i-- ){
                 searchResults.remove(0);
             }
         }
         if (admins.size()>0){
-            for(int i = admins.size() ; i >= 0 ; i-- ){
+            for(int i = admins.size() ; i > 0 ; i-- ){
                 admins.remove(0);
             }
         }
         if (cids.size()>0){
-            for(int i = cids.size() ; i >= 0 ; i-- ){
+            for(int i = cids.size() ; i > 0 ; i-- ){
                 cids.remove(0);
             }
         }
@@ -89,13 +90,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         // TODO Auto-generated method stub
         clearList();
         freshList();
-        if(TextUtils.isEmpty(newText))
-        {
-            //清除ListView
-
-        }
-        else
-        {
+        if(TextUtils.isEmpty(newText)) {} else {
             //使用用户输入的内容查询并输出结果
             HeWeather.getSearch(this, newText, "world", 10, Lang.CHINESE_SIMPLIFIED, new HeWeather.OnResultSearchBeansListener() {
                 //基于用户输入，通过和风API获取查询结果
@@ -107,21 +102,18 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                 public void onSuccess(Search search) {
                     Gson gson = new Gson();
                     String jsondata = gson.toJson(search);          //把dataObject转换成json字符串，存储在jsondata中。
-                    try
-                    {
-                        JSONObject jsonObject = new JSONObject(jsondata); //将字符串格式的jsondata
-                        JSONArray basic = jsonObject.getJSONArray("basic");
+                    try {
+                        JSONObject jsonObject = new JSONObject(jsondata); //将字符串格式的jsondata转为jsonobject
+                        JSONArray basic = jsonObject.getJSONArray("basic");//获取basic字段，也就是真正有用的数据部分
                         for (int i=0; i < basic.length(); i++){
-                            JSONObject nowBases = basic.getJSONObject(i);
+                            JSONObject nowBases = basic.getJSONObject(i);//获取第 i 个JSON object
                             searchResults.add(nowBases.getString("location"));
-                            String admin = nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city");
-                            admins.add(admin);
+                            admins.add(nowBases.getString("admin_area") + " , " + nowBases.getString("parent_city"));
                             cids.add(nowBases.getString("cid"));
-                            Log.i("Log","onSuccess2: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
+                            Log.i("Log","onSuccess: " + searchResults.get(i) + " , " + admins.get(i) + " , " + cids.get(i));
                         }
                     }
-                    catch (Exception e)
-                    {
+                    catch (Exception e) {
                         e.printStackTrace();
                     }
                     freshList();
