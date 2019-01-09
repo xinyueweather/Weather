@@ -73,6 +73,7 @@
                     android:text="cloud" />
 
                 <TextView
+
                     android:id="@+id/curMax_MinTem"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
