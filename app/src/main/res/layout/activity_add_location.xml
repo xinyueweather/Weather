@@ -11,29 +11,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
 
-            <SearchView
-                android:id="@+id/location_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:inputType="textPersonName"
-                android:queryHint="@string/search_location" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:onClick="searchWithGPS"
-                android:src="@android:drawable/ic_menu_mylocation" />
-        </LinearLayout>
+     <SearchView
+         android:id="@+id/location_search"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="start"
+         android:background="@color/colorPrimary"
+         android:inputType="textPersonName"
+
+         android:queryHint="@string/search_location" />
+
 
         <ListView
             android:id="@+id/locations"
