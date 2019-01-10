@@ -27,6 +27,7 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.StartActivity"/>
         <activity android:name=".activity.AddLocationActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activity.HomePageActivity"/>
     </application>
 </manifest>
