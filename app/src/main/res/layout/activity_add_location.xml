@@ -24,7 +24,8 @@
                 android:layout_gravity="start"
                 android:layout_weight="1"
                 android:inputType="textPersonName"
-                android:queryHint="@string/search_location" />
+                android:queryHint="@string/search_location"
+                app:queryBackground="@color/transparent"/>
 
             <ImageView
                 android:id="@+id/imageView"

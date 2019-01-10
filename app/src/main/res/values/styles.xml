@@ -7,8 +7,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/white</item>-->
+        <item name="colorControlHighlight">@color/rippleLight</item>
     </style>
-
+    <style name="NightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/white</item>-->
+        <item name="colorControlHighlight">@color/rippleNight</item>
+    </style>
     <style name="AppThemeNoandFull" parent="@android:style/Theme.NoTitleBar.Fullscreen">
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
