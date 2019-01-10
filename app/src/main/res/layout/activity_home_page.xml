@@ -7,6 +7,13 @@
     tools:context=".activity.HomePageActivity"
     android:orientation="vertical">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
         <LinearLayout
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -425,7 +432,7 @@
                     android:text="舒适度" />
 
                 <TextView
-                    android:id="@+id/comtWet"
+                    android:id="@+id/comtWet1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

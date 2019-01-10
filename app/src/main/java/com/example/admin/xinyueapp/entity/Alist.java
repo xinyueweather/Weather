@@ -72,10 +72,10 @@ public class Alist {
             private String tolTem;
 
             public String getCurTem(){return this.nowTmp;}
-            public void setCurTem(String curTem){this.nowTmp=nowTmp;}
+            public void setCurTem(String nowTmp){this.nowTmp=nowTmp;}
 
             public String getNowCondTxt(){return this.nowCondTxt;}
-            public void setNowCondTxt(String curStatus){this.nowCondTxt=nowCondTxt;}
+            public void setNowCondTxt(String nowCondTxt){this.nowCondTxt=nowCondTxt;}
 
             public String getTolTem(){return this.tolTem;}
             public void setTolTem(String tolTem){this.tolTem=tolTem;}
@@ -88,14 +88,14 @@ public class Alist {
              *  dayTem  :  6 / 7
              */
             private String date;
-           // private Image dCondIma;
+            private int dCondIma;
             private String dayTem;
 
             public String getDate(){return this.date;}
             public void setDate(String date){this.date=date;}
 
-         //   public int getDaySta(){return this.daySta;}
-         //   public void setDaySta(int daySta){this.daySta=daySta;}
+            public int getDCondIma(){return this.dCondIma;}
+            public void setDCondIma(int dCondIma){this.dCondIma=dCondIma;}
 
             public String getDayTem(){return this.dayTem;}
             public void setDayTem(String dayTem){this.dayTem=dayTem;}
@@ -105,7 +105,7 @@ public class Alist {
         public static class HourlyList{
             private String hTime;
             private String hTem;
-            private Image hCondIma;
+            private int hCondIma;
 
             public String gethTime(){ return this.hTime; }
             public void sethTime(String hTime){this.hTime=hTime;}
@@ -113,8 +113,8 @@ public class Alist {
             public String gethTem(){return this.hTem;}
             public void sethTem(String hTem){ this.hTem=hTem;}
 
-            public Image gethCondIma(){ return this.hCondIma;}
-            public void sethCondIma(Image hCondIma){this.hCondIma=hCondIma;}
+            public int gethCondIma(){ return this.hCondIma;}
+            public void sethCondIma(int hCondIma){this.hCondIma=hCondIma;}
 
         }
     }

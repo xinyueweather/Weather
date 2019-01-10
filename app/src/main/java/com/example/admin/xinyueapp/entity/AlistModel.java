@@ -1,20 +1,30 @@
 package com.example.admin.xinyueapp.entity;
 
+import android.util.Log;
+import android.widget.TextView;
+
 import com.example.admin.xinyueapp.R;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import interfaces.heweather.com.interfacesmodule.bean.Lang;
+import interfaces.heweather.com.interfacesmodule.bean.Unit;
+import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
+import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AlistModel {
     public AlistModel() {
     }
 
-    public List<Object> getData() {
+    public Alist getData() {
         Alist alist = new Alist();
-        alist.setCode(1000);
-        alist.setMessage("Success");
         alist.setData(getAllData());
-        return sortData(alist);
+        return alist;
     }
 
     private List<Object> sortData(Alist alist) {
@@ -23,9 +33,8 @@ public class AlistModel {
 
         for (Alist.MyDataList array : arrays) {
             List<Alist.MyDataList.NowList> summ = array.getNowList();
-
             List<Alist.MyDataList.DaysList> days = array.getDaysList();
-            if (summ != null && summ.size() > 0) {
+          /*  if (summ != null && summ.size() > 0) {
                 for (Alist.MyDataList.NowList sum : summ) {
                     arrays_obj.add(sum);
 
@@ -35,7 +44,9 @@ public class AlistModel {
                 for (Alist.MyDataList.DaysList day : days) {
                     arrays_obj.add(day);
                 }
-            }
+            }*/
+          arrays_obj.add(summ);
+          arrays_obj.add(days);
         }
         return arrays_obj;
     }
@@ -71,7 +82,7 @@ public class AlistModel {
         Alist.MyDataList myData = new Alist.MyDataList();
         myData.setNowList(getNowData(1));
         data.add(myData);
-       for (int i = 0; i < 5; i++) {
+       for (int i = 0; i <2; i++) {
             myData.setDaysList(getDaysData(i + 1));
             data.add(myData);
         }
