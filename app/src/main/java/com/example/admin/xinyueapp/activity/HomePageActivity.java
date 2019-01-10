@@ -118,61 +118,6 @@ public class HomePageActivity extends StartActivity {
             public void onError(Throwable throwable) { }
             @Override
             public void onSuccess(List<Weather> list) {
-                Log.i("Log", "scenic" + new Gson().toJson(list));
-                Log.i("Log","SCENIC"+new Gson().toJson(list.get(0).getLifestyle()));
-                Log.i("Log","SCENIC"+new Gson().toJson(list.get(0).getNow()));
-                Log.i("Log","SCENIC"+new Gson().toJson(list.get(0).getBasic()));
-                Log.i("Log","SCENIC"+new Gson().toJson(list.get(0).getStatus()));
-                Log.i("Log","SCENIC"+new Gson().toJson(list.get(0).getUpdate()));
-                TextView tv_nowTem = (TextView) findViewById(R.id.nowTem);
-                TextView tv_nowCond = (TextView) findViewById(R.id.nowCond);
-                TextView tv_curMax_MinTem = (TextView) findViewById(R.id.curMax_MinTem);
-                /**
-                 * 存放缓存天气数据
-                 * SharedPreferences.Editor editor = prefs.edit();
-                 */
-                SharedPreferences prefs = getSharedPreferences("weather", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-
-                tv_nowCond.setText(list.get(0).getNow().getCond_txt());
-                editor.putString("nowCond", list.get(0).getNow().getCond_txt());
-                tv_nowTem.setText(list.get(0).getNow().getTmp() + "℃");
-                editor.putString("nowTem", list.get(0).getNow().getTmp() + "℃");
-                tv_curMax_MinTem.setText(list.get(0).getDaily_forecast().get(0).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(0).getTmp_min() + "℃");
-                editor.putString("Max_MinTem", list.get(0).getDaily_forecast().get(0).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(0).getTmp_min() + "℃");
-                for (int i = 0; i < 3; i++) {
-                    /**
-                     * tv_dTime1.setText(list.get(0).getDaily_forecast().get(1).getDate());
-                     * tv_dMax_MinTem1.setText(list.get(0).getDaily_forecast().get(1).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(1).getTmp_min());
-                     * dTime的id,日期
-                     */
-
-                    Log.i("Log", "LLLid" + i);
-                    int TimeId = getResources().getIdentifier("dTime" + i, "id", "com.example.admin.xinyueapp");
-                    TextView dTimeId = findViewById(TimeId);
-                    dTimeId.setText(list.get(0).getDaily_forecast().get(i).getDate());
-                    editor.putString("dTime" + i, list.get(0).getDaily_forecast().get(i).getDate());
-                    //dMax_MinTem的id，最高最低温度
-                    int Max_MinTemId = getResources().getIdentifier("dMax_MinTem" + i, "id", "com.example.admin.xinyueapp");
-                    TextView dMax_MinTemId = findViewById(Max_MinTemId);
-                    dMax_MinTemId.setText(list.get(0).getDaily_forecast().get(i).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(i).getTmp_min() + "℃");
-                    editor.putString("dMax_MinTem" + i, list.get(0).getDaily_forecast().get(i).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(i).getTmp_min() + "℃");
-                    //dCond的Id//dCond对应的image的id
-                    int CondId = getResources().getIdentifier("dCond" + i, "id", getPackageName());
-                    ImageView dCondId = findViewById(CondId);
-                    int imageId = getResources().getIdentifier("w" + list.get(0).getDaily_forecast().get(i).getCond_code_d(), "drawable", "com.example.admin.xinyueapp");
-                    dCondId.setImageResource(imageId);
-                    editor.putInt("dCond" + (i+0), imageId);
-                }
-               for (int i = 0; i < 4; i++) {
-                    Log.i("Log", "LLLLid" + i);
-                    int comfId = getResources().getIdentifier("comf" + (i+0), "id", "com.example.admin.xinyueapp");
-                    TextView comfText = findViewById(comfId);
-                    comfText.setText(list.get(0).getLifestyle().get(i).getBrf() + "\n" + list.get(0).getLifestyle().get(i).getTxt());
-                    editor.putString("comtWet" + (i+0), list.get(0).getLifestyle().get(i).getBrf() + "\n" + list.get(0).getLifestyle().get(i).getTxt());
-                }
-                editor.commit();
-
                 List<Object> arrays_obj=new ArrayList<>();
                 Alist.MyDataList.NowList nl= new Alist.MyDataList.NowList();
                 nl.setNowCondTxt(list.get(0).getNow().getCond_txt());
@@ -184,14 +129,10 @@ public class HomePageActivity extends StartActivity {
                     Alist.MyDataList.DaysList dl=new Alist.MyDataList.DaysList();
                     dl.setDate(list.get(0).getDaily_forecast().get(i).getDate());
                     dl.setDayTem(list.get(0).getDaily_forecast().get(i).getTmp_max() + "℃/" + list.get(0).getDaily_forecast().get(i).getTmp_min() + "℃");
+                    int imageId = getResources().getIdentifier("w" + list.get(0).getDaily_forecast().get(i).getCond_code_d(), "drawable", "com.example.admin.xinyueapp");
+                    dl.setDCondIma(imageId);
                     arrays_obj.add(dl);
                 }
-               /* Alist.MyDataList.DaysList dl = new Alist.MyDataList.DaysList();
-                dl.setDate("2015-158");
-                dl.setDayTem("dfjslkdfz");
-
-                arrays_obj.add(dl);*/
-                //return sortData(alist);
                 WeatherAdapter addapter = new WeatherAdapter();
                 mWeatherRv.setAdapter(addapter);
                 addapter.setData(arrays_obj);
