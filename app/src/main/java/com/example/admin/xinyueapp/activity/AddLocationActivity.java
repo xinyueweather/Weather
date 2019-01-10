@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.search.Search;
+import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AddLocationActivity extends Activity implements SearchView.OnQueryTextListener {
@@ -43,12 +44,12 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locationList=(ListView)findViewById(R.id.location_list);
         freshList();
         //点击列表项时激发该方法
-        /*locationList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        locationList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + locations.get(position).getLocation() + ", 它属于: " + locations.get(position).getAdmin() + ", 它的 cid 是: "+ locations.get(position).getCid(), Toast.LENGTH_LONG).show();
             }
-        });*/
+        });
 
         SearchView locationSearch = (SearchView) findViewById(R.id.location_search);
         //设置该SearchView默认是否自动缩小为图标
@@ -57,6 +58,8 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locationSearch.setOnQueryTextListener(this);
         //设置该SearchView显示搜索按钮
         locationSearch.setSubmitButtonEnabled(true);
+        HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
+        HeConfig.switchToFreeServerNode();
     }
 
     public void clearList(){
@@ -103,12 +106,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                         for (int i=0; i < basic.length(); i++){
                             JSONObject nowBases = basic.getJSONObject(i);//获取第 i 个JSON object
                             Log.i("Log", "onSuccess: " + nowBases);
-                            Location currLocation;
-                            if(nowBases.has("admin_area"))
-                                {currLocation = new Location(nowBases.getString("location") , nowBases.getString("parent_city") , nowBases.getString("admin_area") , nowBases.getString("cid"));}
-                            else
-                                {currLocation = new Location(nowBases.getString("location") , nowBases.getString("parent_city") , " " , nowBases.getString("cid"));}
-                            locations.add(currLocation);
+                            locations.add(new Location(nowBases.getString("location") , nowBases.getString("parent_city") , nowBases.getString("admin_area") , nowBases.getString("cid")));
                             Log.i("Log", "onSuccess: " + locations.get(i).getAdmin() + locations.get(i).getLocation() + locations.get(i).getCid());
                         }
                     }

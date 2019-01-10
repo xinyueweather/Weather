@@ -14,17 +14,15 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:id="@+id/location_text"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingBottom="4sp"
-        tools:text="洪山">
+        android:paddingBottom="4sp">
     </TextView>
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:textColor="@color/black"
-        android:id="@+id/admin_text"
-        tools:text="湖北，武汉">
+        android:textColor="@color/white"
+        android:id="@+id/admin_text">
     </TextView>
 </LinearLayout>
