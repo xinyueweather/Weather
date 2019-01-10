@@ -13,7 +13,6 @@ public class ViewHolderNow extends RecyclerView.ViewHolder {
 
     public ViewHolderNow(View view){
         super(view);
-
         mCurTemTv = (TextView)view.findViewById(R.id.curTem);
         mCurStatusTv = (TextView)view.findViewById(R.id.curStatus);
         mTolTemTv = (TextView)view.findViewById(R.id.tolTem);

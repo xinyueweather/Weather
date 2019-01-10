@@ -104,17 +104,35 @@ public class Alist {
         ///////////第三模块定义
         public static class HourlyList{
             private String hTime;
-            private String hTem;
+            private String hTmp;
             private int hCondIma;
 
             public String gethTime(){ return this.hTime; }
             public void sethTime(String hTime){this.hTime=hTime;}
 
-            public String gethTem(){return this.hTem;}
-            public void sethTem(String hTem){ this.hTem=hTem;}
+            public String gethTmp(){return this.hTmp;}
+            public void sethTmp(String hTmp){ this.hTmp=hTmp;}
 
             public int gethCondIma(){ return this.hCondIma;}
             public void sethCondIma(int hCondIma){this.hCondIma=hCondIma;}
+
+        }
+
+        ///////////第si模块定义
+        public static class ComfList{
+            private String cFi;
+            private String cHum;
+            private String cUv;
+
+            public String getCFi(){ return this.cFi; }
+            public void setCFi(String cFi){this.cFi=cFi;}
+
+            public String getCUv(){ return this.cUv; }
+            public void setCUv(String cUv){this.cUv=cUv;}
+
+            public String getCHum(){return this.cHum;}
+            public void setCHum(String cHum){ this.cHum=cHum;}
+
 
         }
     }

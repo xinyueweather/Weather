@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 
 import com.example.admin.xinyueapp.R;
 import com.example.admin.xinyueapp.entity.Alist;
-import com.example.admin.xinyueapp.entity.MyNowList;
 
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int ITEM_NOW = 1;
-    private int ITEM_DAYS = 2;
+    private int ITEM_HOURLY = 2;
+    private int ITEM_DAYS = 3;
+    private int ITEM_COMF = 4;
     private List<Object> objects;
 
     public void setData(List<Object> objects) {
@@ -31,9 +32,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (viewType == 1) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.now_view, parent, false);
             holder = new ViewHolderNow(view);
-        } else if (viewType == 2) {
+        } else if (viewType == 3) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.days_view, parent, false);
             holder = new ViewHolderDays(view);
+        }else if(viewType ==2){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hourly_view,parent,false);
+            holder = new ViewHolderHourly(view);
+        }else if(viewType ==4){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comf_view,parent,false);
+            holder = new ViewHolderComf(view);
         }
         return holder;
     }
@@ -50,6 +57,17 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderDays) holder).mDateTv.setText(data.getDate());
             ((ViewHolderDays) holder).mDayStaIv.setImageResource(data.getDCondIma());
             ((ViewHolderDays) holder).mDayTemTv.setText(data.getDayTem());
+        }else if(holder instanceof ViewHolderHourly){
+            Alist.MyDataList.HourlyList data = (Alist.MyDataList.HourlyList) objects.get(position);
+            ((ViewHolderHourly) holder).mhTimeTv.setText(data.gethTime());
+            ((ViewHolderHourly) holder).mhCondIv.setImageResource(data.gethCondIma());
+            ((ViewHolderHourly) holder).mhTmpTv.setText(data.gethTmp());
+        }
+        else if(holder instanceof ViewHolderComf){
+           Alist.MyDataList.ComfList data = (Alist.MyDataList.ComfList) objects.get(position);
+            ((ViewHolderComf) holder).mCFi.setText(data.getCFi());
+            ((ViewHolderComf) holder).mCHum.setText(data.getCHum());
+            ((ViewHolderComf) holder).mCUv.setText(data.getCUv());
         }
     }
 
@@ -59,6 +77,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return ITEM_NOW;
         } else if (objects.get(position) instanceof Alist.MyDataList.DaysList) {
             return ITEM_DAYS;
+        }else if(objects.get(position) instanceof  Alist.MyDataList.HourlyList){
+            return ITEM_HOURLY;
+        }
+        else if(objects.get(position) instanceof  Alist.MyDataList.ComfList){
+            return ITEM_COMF;
         }
         return super.getItemViewType(position);
     }
