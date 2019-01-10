@@ -19,19 +19,4 @@
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
-    <!--
-    @android:style/Theme.NoTitleBar.Fullscreen..
-
-    Theme.AppCompat.Light.NoActionBar
-    -->
- <!--   <style name="AppTheme.Launcher" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-
-    </style>
-    -->
-<!--
-@android:style/Theme.NoTitleBar.Fullscreen
-Theme.AppCompat.Light.NoActionBar
--->
 </resources>

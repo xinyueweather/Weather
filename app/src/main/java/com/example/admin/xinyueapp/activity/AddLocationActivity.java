@@ -2,6 +2,7 @@ package com.example.admin.xinyueapp.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.xinyueapp.R;
@@ -58,6 +60,14 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         locationSearch.setOnQueryTextListener(this);
         //设置该SearchView显示搜索按钮
         locationSearch.setSubmitButtonEnabled(true);
+        View viewById = locationSearch.findViewById(android.support.v7.appcompat.R.id.search_plate);
+        if (viewById != null) {
+            viewById.setBackgroundColor(Color.TRANSPARENT);
+        }
+        int id = locationSearch.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) locationSearch.findViewById(id);
+        textView.setTextColor(this.getColor(R.color.white));
+        textView.setHintTextColor(Color.parseColor("#FFFFFF"));
         HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
         HeConfig.switchToFreeServerNode();
     }
