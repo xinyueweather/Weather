@@ -57,7 +57,7 @@ public class AlistModel {
             Alist.MyDataList.NowList mySumm = new Alist.MyDataList.NowList();
             int a = i + 1;
             mySumm.setNowCondTxt("阴" + a);
-            mySumm.setCurTem("1" + a + "℃");
+            mySumm.setNowTem("1" + a + "℃");
             mySumm.setTolTem("10/15℃" + a);
             summ.add(mySumm);
         }

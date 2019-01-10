@@ -71,8 +71,8 @@ public class Alist {
             private String nowCondTxt;
             private String tolTem;
 
-            public String getCurTem(){return this.nowTmp;}
-            public void setCurTem(String nowTmp){this.nowTmp=nowTmp;}
+            public String getNowTmp(){return this.nowTmp;}
+            public void setNowTem(String nowTmp){this.nowTmp=nowTmp;}
 
             public String getNowCondTxt(){return this.nowCondTxt;}
             public void setNowCondTxt(String nowCondTxt){this.nowCondTxt=nowCondTxt;}

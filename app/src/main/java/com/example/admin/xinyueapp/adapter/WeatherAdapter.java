@@ -42,7 +42,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolderNow) {
             Alist.MyDataList.NowList data = (Alist.MyDataList.NowList) objects.get(position);
-            ((ViewHolderNow) holder).mCurTemTv.setText(data.getCurTem());
+            ((ViewHolderNow) holder).mCurTemTv.setText(data.getNowTmp());
             ((ViewHolderNow) holder).mCurStatusTv.setText(data.getNowCondTxt());
             ((ViewHolderNow) holder).mTolTemTv.setText(data.getTolTem());
         } else if (holder instanceof ViewHolderDays) {
