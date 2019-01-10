@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.admin.xinyueapp.R;
 import com.example.admin.xinyueapp.entity.Alist;
+import com.example.admin.xinyueapp.entity.MyNowList;
 
 import java.util.List;
 
@@ -41,14 +42,14 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolderNow) {
             Alist.MyDataList.NowList data = (Alist.MyDataList.NowList) objects.get(position);
-            ((ViewHolderNow) holder).mCurTemTv.setText("6℃");
-            ((ViewHolderNow) holder).mCurStatusTv.setText("阴");
-            ((ViewHolderNow) holder).mTolTemTv.setText("6℃/0℃");
+            ((ViewHolderNow) holder).mCurTemTv.setText(data.getNowTmp());
+            ((ViewHolderNow) holder).mCurStatusTv.setText(data.getNowCondTxt());
+            ((ViewHolderNow) holder).mTolTemTv.setText(data.getTolTem());
         } else if (holder instanceof ViewHolderDays) {
             Alist.MyDataList.DaysList data = (Alist.MyDataList.DaysList) objects.get(position);
-            ((ViewHolderDays) holder).mDateTv.setText("1月3日");
-            //((ViewHolderDays) holder).mDayStaIv.setImageResource(R.drawable.apple);
-            ((ViewHolderDays) holder).mDayTemTv.setText("6℃/0℃");
+            ((ViewHolderDays) holder).mDateTv.setText(data.getDate());
+            ((ViewHolderDays) holder).mDayStaIv.setImageResource(data.getDCondIma());
+            ((ViewHolderDays) holder).mDayTemTv.setText(data.getDayTem());
         }
     }
 
