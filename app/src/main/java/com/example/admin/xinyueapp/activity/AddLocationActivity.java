@@ -2,6 +2,7 @@ package com.example.admin.xinyueapp.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.xinyueapp.R;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.search.Search;
-import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AddLocationActivity extends Activity implements SearchView.OnQueryTextListener {
@@ -41,7 +41,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
-        locationList=(ListView)findViewById(R.id.location_list);
+        locationList= findViewById(R.id.location_list);
         freshList();
         //点击列表项时激发该方法
         locationList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -51,15 +51,27 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
             }
         });
 
-        SearchView locationSearch = (SearchView) findViewById(R.id.location_search);
+        SearchView locationSearch = findViewById(R.id.location_search);
         //设置该SearchView默认是否自动缩小为图标
         locationSearch.setIconifiedByDefault(false);
         //为该SearchView组件设置事件监听器
         locationSearch.setOnQueryTextListener(this);
         //设置该SearchView显示搜索按钮
         locationSearch.setSubmitButtonEnabled(true);
-        HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
-        HeConfig.switchToFreeServerNode();
+        View viewById = locationSearch.findViewById(android.support.v7.appcompat.R.id.search_plate);
+        if (viewById != null) {
+            viewById.setBackgroundColor(Color.TRANSPARENT);
+        }
+        int id = locationSearch.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = locationSearch.findViewById(id);
+        textView.setTextColor(this.getColor(R.color.white));
+        textView.setHintTextColor(Color.parseColor("#FFFFFF"));
+        //setUnderLinetransparent(locationSearch);
+        /*把下划线设为透明，不知道为什么不能用。
+        View mSearchPlate = findViewById(R.id.search_plate);
+        View mSearchArea = findViewById(R.id.submit_area);
+        locationSearch.findViewById(android.support.v7.appcompat.R.id.search_plate).setBackground(null);
+        locationSearch.findViewById(android.support.v7.appcompat.R.id.submit_area).setBackground(null);*/
     }
 
     public void clearList(){
