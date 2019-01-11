@@ -2,7 +2,9 @@ package com.example.admin.xinyueapp.activity;
 
 import android.Manifest;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -30,7 +32,10 @@ import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.Unit;
@@ -120,13 +125,31 @@ public class HomePageActivity extends StartActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mWeatherRv.setLayoutManager(manager);
-
+        Log.i("Log","onSdata null787123");
         HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
         HeConfig.switchToFreeServerNode();
-        getWeather("");
-        getAir();
+
+        //Context ctx= HomePageActivity.this;
+        SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
+        //存入数据
+        SharedPreferences.Editor editor = sp.edit();
+
+        Set<String> sdata;
+        sdata = sp.getStringSet("cid",null);
+        if(sdata.size()>0){
+            String[] cid = (String[])sdata.toArray(new String[sdata.size()]);
+            Log.i("Log","onSdata.cid"+cid.length);
+            getWeather(cid[0]);
+        }else{
+        getWeather("");}
+      //  getAir();
     }
 
+    /**
+     * 获得天气详情
+     * @param location
+     * @return
+     */
     private boolean getWeather(String location) {
         HeWeather.getWeather(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherDataListBeansListener() {
             @Override

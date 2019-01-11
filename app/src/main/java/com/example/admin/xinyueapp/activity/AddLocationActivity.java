@@ -2,6 +2,8 @@ package com.example.admin.xinyueapp.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +26,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.search.Search;
@@ -31,6 +35,7 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AddLocationActivity extends Activity implements SearchView.OnQueryTextListener {
 
+    private  int index =0;
 
     private ListView locationList;
     //自动完成的列表
@@ -43,11 +48,48 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         setContentView(R.layout.activity_add_location);
         locationList= findViewById(R.id.location_list);
         freshList();
+
+
         //点击列表项时激发该方法
         locationList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /**
+                 *轻量级缓存城市
+                 */
+                ////获取SharedPreferences对象
+                //Context ctx= AddLocationActivity.this;
+                SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
+                //存入数据
+                SharedPreferences.Editor editor = sp.edit();
+
+                Set<String> sdata;
+                Set<String> sdd = new HashSet<>();
+
+                //sdd.add(locations.get(position).getCid());
+                //editor.putStringSet("cid",sdd);
+                sdata = sp.getStringSet("cid",null);
+
+                //editor.putStringSet("cid",sdata);
+                if(sdata==null){
+                    Log.i("Log","while null"+"123");
+                    //Set<String> nn = new HashSet<>();;
+                    sdd.add(locations.get(position).getCid());
+                    editor.putStringSet("cid",sdd);
+
+                }else{
+                    Log.i("Log","while !null"+"456");
+                    sdata.add(locations.get(position).getCid());
+                    Log.i("Log","while !null"+sdata.size());
+                    editor.clear();
+                    editor.putStringSet("cid",sdata);
+                }
+                editor.apply();
+
+               // Log.d("xxxxxx",sp.getStringSet("cid",sdata));
                 Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + locations.get(position).getLocation() + ", 它属于: " + locations.get(position).getAdmin() + ", 它的 cid 是: "+ locations.get(position).getCid(), Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -72,6 +114,10 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
         View mSearchArea = findViewById(R.id.submit_area);
         locationSearch.findViewById(android.support.v7.appcompat.R.id.search_plate).setBackground(null);
         locationSearch.findViewById(android.support.v7.appcompat.R.id.submit_area).setBackground(null);*/
+
+
+
+
     }
 
     public void clearList(){
