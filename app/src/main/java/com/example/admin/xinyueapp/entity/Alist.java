@@ -118,7 +118,7 @@ public class Alist {
 
         }
 
-        ///////////第si模块定义
+        ///////////第四模块定义
         public static class ComfList{
             private String cFi;
             private String cHum;
@@ -132,7 +132,67 @@ public class Alist {
 
             public String getCHum(){return this.cHum;}
             public void setCHum(String cHum){ this.cHum=cHum;}
+        }
 
+        ///////////第五模块定义
+        public static class AirList{
+            private String Aqi;
+            private String PM2_5;
+            private String NO2;
+            private String SO2;
+            private String O3;
+            private String CO;
+
+            public String getAqi(){ return this.Aqi; }
+            public void setAqi(String Aqi){ this.Aqi=Aqi;}
+
+            public String getPM2_5(){return this.PM2_5;}
+            public void setPM2_5(String PM2_5) { this.PM2_5 = PM2_5; }
+
+            public String getNO2(){ return this.NO2; }
+            public void setNO2(String NO2){this.NO2=NO2;}
+
+            public String getSO2(){ return this.SO2; }
+            public void setSO2(String SO2){this.SO2=SO2;}
+
+            public String getO3(){ return this.O3; }
+            public void setO3(String O3){this.NO2=O3;}
+
+            public String getCO(){ return this.CO; }
+            public void setCO(String NO2){this.CO=CO;}
+        }
+
+        ///////////第六模块定义
+        public static class WindList{
+            private String windDir;
+            private String windSc;
+
+            public String getWindDir(){ return this.windDir; }
+            public void setWindDir(String windDir){ this.windDir=windDir;}
+
+            public String getWindSc(){return this.windSc;}
+            public void setWindSc(String windSc) { this.windSc = windSc; }
+
+        }
+        ///////////第七模块定义
+        public static class TipList{
+            private String tComf;
+            private String tFlu;
+            private String tSpor;
+            private String tDrsg;
+
+            public String getTComf(){ return this.tComf; }
+            public void setTComf(String tComf){ this.tComf=tComf;}
+
+            public String getTFlu(){return this.tFlu;}
+            public void setTFlu(String tFlu) { this.tFlu = tFlu; }
+
+
+            public String getTSpor(){ return this.tSpor; }
+            public void setTSpor(String tSpor){ this.tSpor=tSpor;}
+
+            public String getTDrsg(){return this.tDrsg;}
+            public void setTDrsg(String tDrsg) { this.tDrsg = tDrsg; }
 
         }
     }

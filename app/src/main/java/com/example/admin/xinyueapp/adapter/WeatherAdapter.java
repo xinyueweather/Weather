@@ -16,6 +16,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private int ITEM_HOURLY = 2;
     private int ITEM_DAYS = 3;
     private int ITEM_COMF = 4;
+    private int ITEM_AIR = 5;
+    private int ITEM_WIND = 6;
+    private int ITEM_TIP = 7;
     private List<Object> objects;
 
     public void setData(List<Object> objects) {
@@ -41,6 +44,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }else if(viewType ==4){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comf_view,parent,false);
             holder = new ViewHolderComf(view);
+        }else if(viewType ==5){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.air_view,parent,false);
+            holder = new ViewHolderAir(view);
+        }else if(viewType ==6){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wind_view,parent,false);
+            holder = new ViewHolderWind(view);
+        }else if(viewType ==7){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tip_view,parent,false);
+            holder = new ViewHolderTip(view);
         }
         return holder;
     }
@@ -52,7 +64,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderNow) holder).mCurTemTv.setText(data.getNowTmp());
             ((ViewHolderNow) holder).mCurStatusTv.setText(data.getNowCondTxt());
             ((ViewHolderNow) holder).mTolTemTv.setText(data.getTolTem());
-        } else if (holder instanceof ViewHolderDays) {
+        }else if (holder instanceof ViewHolderDays) {
             Alist.MyDataList.DaysList data = (Alist.MyDataList.DaysList) objects.get(position);
             ((ViewHolderDays) holder).mDateTv.setText(data.getDate());
             ((ViewHolderDays) holder).mDayStaIv.setImageResource(data.getDCondIma());
@@ -62,26 +74,49 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderHourly) holder).mhTimeTv.setText(data.gethTime());
             ((ViewHolderHourly) holder).mhCondIv.setImageResource(data.gethCondIma());
             ((ViewHolderHourly) holder).mhTmpTv.setText(data.gethTmp());
-        }
-        else if(holder instanceof ViewHolderComf){
+        }else if(holder instanceof ViewHolderComf){
            Alist.MyDataList.ComfList data = (Alist.MyDataList.ComfList) objects.get(position);
             ((ViewHolderComf) holder).mCFi.setText(data.getCFi());
             ((ViewHolderComf) holder).mCHum.setText(data.getCHum());
             ((ViewHolderComf) holder).mCUv.setText(data.getCUv());
+        }else if(holder instanceof ViewHolderAir){
+          /*  Alist.MyDataList.AirList data = (Alist.MyDataList.AirList) objects.get(position);
+            ((ViewHolderAir) holder).mPM2_5.setText(data.getPM2_5());
+            ((ViewHolderAir) holder).mNO2.setText(data.getNO2());
+            ((ViewHolderAir) holder).mSO2.setText(data.getSO2());
+            ((ViewHolderAir) holder).mCO.setText(data.getCO());
+            ((ViewHolderAir) holder).mO3.setText(data.getO3());
+            ((ViewHolderAir) holder).mAqi.setText(data.getAqi());*/
+        }else if(holder instanceof ViewHolderWind){
+            Alist.MyDataList.WindList data = (Alist.MyDataList.WindList) objects.get(position);
+            ((ViewHolderWind) holder).mWindSc.setText(data.getWindSc());
+            ((ViewHolderWind) holder).mWindDir.setText(data.getWindDir());
+        }else if(holder instanceof ViewHolderTip){
+            Alist.MyDataList.TipList data = (Alist.MyDataList.TipList) objects.get(position);
+            ((ViewHolderTip) holder).mtSpor.setText(data.getTSpor());
+            ((ViewHolderTip) holder).mtComf.setText(data.getTComf());
+            ((ViewHolderTip) holder).mtDrsg.setText(data.getTDrsg());
+            ((ViewHolderTip) holder).mtFlu.setText(data.getTFlu());
         }
+
     }
 
     @Override
     public int getItemViewType(int position) {
         if (objects.get(position) instanceof Alist.MyDataList.NowList) {
             return ITEM_NOW;
-        } else if (objects.get(position) instanceof Alist.MyDataList.DaysList) {
+        }else if (objects.get(position) instanceof Alist.MyDataList.DaysList) {
             return ITEM_DAYS;
         }else if(objects.get(position) instanceof  Alist.MyDataList.HourlyList){
             return ITEM_HOURLY;
-        }
-        else if(objects.get(position) instanceof  Alist.MyDataList.ComfList){
+        }else if(objects.get(position) instanceof  Alist.MyDataList.ComfList){
             return ITEM_COMF;
+        }else if(objects.get(position) instanceof  Alist.MyDataList.AirList){
+            return ITEM_AIR;
+        }else if(objects.get(position) instanceof  Alist.MyDataList.WindList){
+            return ITEM_WIND;
+        }else if(objects.get(position) instanceof  Alist.MyDataList.TipList){
+            return ITEM_TIP;
         }
         return super.getItemViewType(position);
     }
