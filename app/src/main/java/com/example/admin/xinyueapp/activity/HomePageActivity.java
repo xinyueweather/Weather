@@ -138,7 +138,8 @@ public class HomePageActivity extends StartActivity {
 
         Set<String> sdata;
         sdata = sp.getStringSet("cid",null);
-        if(sdata == null){
+
+        if(sdata==null){
             getWeather("");
         }else{
             String[] cid = (String[])sdata.toArray(new String[sdata.size()]);

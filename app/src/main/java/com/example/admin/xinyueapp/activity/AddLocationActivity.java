@@ -67,24 +67,21 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                 Set<String> sdata;
                 Set<String> sdd = new HashSet<>();
 
-                //sdd.add(locations.get(position).getCid());
-                //editor.putStringSet("cid",sdd);
+               /* //存入多个城市
                 sdata = sp.getStringSet("cid",null);
-
-                //editor.putStringSet("cid",sdata);
                 if(sdata==null){
-                    Log.i("Log","while null"+"123");
                     //Set<String> nn = new HashSet<>();;
                     sdd.add(locations.get(position).getCid());
                     editor.putStringSet("cid",sdd);
 
                 }else{
-                    Log.i("Log","while !null"+"456");
                     sdata.add(locations.get(position).getCid());
-                    Log.i("Log","while !null"+sdata.size());
                     editor.clear();
                     editor.putStringSet("cid",sdata);
-                }
+                }*/
+                sdd.add(locations.get(position).getCid());
+                editor.clear();
+                editor.putStringSet("cid",sdd);
                 editor.apply();
 
                // Log.d("xxxxxx",sp.getStringSet("cid",sdata));
