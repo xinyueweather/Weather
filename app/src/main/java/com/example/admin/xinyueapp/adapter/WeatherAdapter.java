@@ -74,6 +74,34 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderHourly) holder).mhTimeTv.setText(data.gethTime());
             ((ViewHolderHourly) holder).mhCondIv.setImageResource(data.gethCondIma());
             ((ViewHolderHourly) holder).mhTmpTv.setText(data.gethTmp());
+
+            ((ViewHolderHourly) holder).mhTimeTv1.setText(data.gethTime1());
+            ((ViewHolderHourly) holder).mhCondIv1.setImageResource(data.gethCondIma1());
+            ((ViewHolderHourly) holder).mhTmpTv1.setText(data.gethTmp1());
+
+            ((ViewHolderHourly) holder).mhTimeTv2.setText(data.gethTime2());
+            ((ViewHolderHourly) holder).mhCondIv2.setImageResource(data.gethCondIma2());
+            ((ViewHolderHourly) holder).mhTmpTv2.setText(data.gethTmp2());
+
+            ((ViewHolderHourly) holder).mhTimeTv3.setText(data.gethTime3());
+            ((ViewHolderHourly) holder).mhCondIv3.setImageResource(data.gethCondIma3());
+            ((ViewHolderHourly) holder).mhTmpTv3.setText(data.gethTmp3());
+
+            ((ViewHolderHourly) holder).mhTimeTv4.setText(data.gethTime4());
+            ((ViewHolderHourly) holder).mhCondIv4.setImageResource(data.gethCondIma4());
+            ((ViewHolderHourly) holder).mhTmpTv4.setText(data.gethTmp4());
+
+            ((ViewHolderHourly) holder).mhTimeTv5.setText(data.gethTime5());
+            ((ViewHolderHourly) holder).mhCondIv5.setImageResource(data.gethCondIma5());
+            ((ViewHolderHourly) holder).mhTmpTv5.setText(data.gethTmp5());
+
+            ((ViewHolderHourly) holder).mhTimeTv6.setText(data.gethTime6());
+            ((ViewHolderHourly) holder).mhCondIv6.setImageResource(data.gethCondIma6());
+            ((ViewHolderHourly) holder).mhTmpTv6.setText(data.gethTmp6());
+
+            ((ViewHolderHourly) holder).mhTimeTv7.setText(data.gethTime7());
+            ((ViewHolderHourly) holder).mhCondIv7.setImageResource(data.gethCondIma7());
+            ((ViewHolderHourly) holder).mhTmpTv7.setText(data.gethTmp7());
         }else if(holder instanceof ViewHolderComf){
            Alist.MyDataList.ComfList data = (Alist.MyDataList.ComfList) objects.get(position);
             ((ViewHolderComf) holder).mCFi.setText(data.getCFi());
@@ -98,7 +126,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderTip) holder).mtDrsg.setText(data.getTDrsg());
             ((ViewHolderTip) holder).mtFlu.setText(data.getTFlu());
         }
-
     }
 
     @Override

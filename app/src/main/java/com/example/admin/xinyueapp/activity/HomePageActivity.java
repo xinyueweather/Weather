@@ -5,10 +5,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +23,7 @@ import com.example.admin.xinyueapp.entity.Alist;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -43,6 +46,7 @@ import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.air.Air;
 import interfaces.heweather.com.interfacesmodule.bean.weather.Weather;
 
+import interfaces.heweather.com.interfacesmodule.bean.weather.hourly.Hourly;
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
@@ -125,24 +129,22 @@ public class HomePageActivity extends StartActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mWeatherRv.setLayoutManager(manager);
-        Log.i("Log","onSdata null787123");
         HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
         HeConfig.switchToFreeServerNode();
-
         //Context ctx= HomePageActivity.this;
         SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
         //存入数据
-        SharedPreferences.Editor editor = sp.edit();
+        //SharedPreferences.Editor editor = sp.edit();
 
         Set<String> sdata;
         sdata = sp.getStringSet("cid",null);
-        if(sdata.size()>0){
+        if(sdata == null){
+            getWeather("");
+        }else{
             String[] cid = (String[])sdata.toArray(new String[sdata.size()]);
             Log.i("Log","onSdata.cid"+cid.length);
             getWeather(cid[0]);
-        }else{
-        getWeather("");}
-      //  getAir();
+        }
     }
 
     /**
@@ -167,13 +169,7 @@ public class HomePageActivity extends StartActivity {
                 //Log.i("Log", "ONSU" + nl.getCurTem());
                 TextView lo = (TextView)findViewById(R.id.showCity);
                 lo.setText(list.get(0).getBasic().getLocation());
-                Alist.MyDataList.HourlyList hlnow = new Alist.MyDataList.HourlyList();
-                hlnow.sethTime("现在");
-                int image = getResources().getIdentifier("w" + list.get(0).getNow().getCond_code(), "drawable", "com.example.admin.xinyueapp");
-                hlnow.sethCondIma(image);
-                hlnow.sethTmp(list.get(0).getNow().getTmp() + "℃");
-                arrays_obj.add(hlnow);
-                for (int i = 0; i < list.get(0).getHourly().size(); i++) {
+                /*for (int i = 0; i < list.get(0).getHourly().size(); i++) {
                     Alist.MyDataList.HourlyList hl = new Alist.MyDataList.HourlyList();
                     hl.sethTime(list.get(0).getHourly().get(i).getTime().substring(11));
                     int imageId = getResources().getIdentifier("w" + list.get(0).getHourly().get(i).getCond_code(), "drawable", "com.example.admin.xinyueapp");
@@ -181,7 +177,52 @@ public class HomePageActivity extends StartActivity {
 
                     hl.sethTmp(list.get(0).getHourly().get(i).getTmp() + "℃");
                     arrays_obj.add(hl);
-                }
+                }*/
+                ///
+                //每小时温度
+                ///
+                Alist.MyDataList.HourlyList hl = new Alist.MyDataList.HourlyList();
+                hl.sethTime("现在");
+                int image = getResources().getIdentifier("w" + list.get(0).getNow().getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma(image);
+                hl.sethTmp(list.get(0).getNow().getTmp() + "℃");
+
+                hl.sethTime1(list.get(0).getHourly().get(0).getTime().substring(11));
+                int image1 = getResources().getIdentifier("w" + list.get(0).getHourly().get(0).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma1(image1);
+                hl.sethTmp1(list.get(0).getHourly().get(0).getTmp() + "℃");
+
+                hl.sethTime2(list.get(0).getHourly().get(1).getTime().substring(11));
+                int image2 = getResources().getIdentifier("w" + list.get(0).getHourly().get(1).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma2(image2);
+                hl.sethTmp2(list.get(0).getHourly().get(1).getTmp() + "℃");
+
+                hl.sethTime3(list.get(0).getHourly().get(2).getTime().substring(11));
+                int image3 = getResources().getIdentifier("w" + list.get(0).getHourly().get(2).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma3(image3);
+                hl.sethTmp3(list.get(0).getHourly().get(2).getTmp() + "℃");
+
+                hl.sethTime4(list.get(0).getHourly().get(3).getTime().substring(11));
+                int image4 = getResources().getIdentifier("w" + list.get(0).getHourly().get(3).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma4(image4);
+                hl.sethTmp4(list.get(0).getHourly().get(3).getTmp() + "℃");
+
+                hl.sethTime5(list.get(0).getHourly().get(4).getTime().substring(11));
+                int image5 = getResources().getIdentifier("w" + list.get(0).getHourly().get(4).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma5(image5);
+                hl.sethTmp5(list.get(0).getHourly().get(4).getTmp() + "℃");
+
+                hl.sethTime6(list.get(0).getHourly().get(5).getTime().substring(11));
+                int image6 = getResources().getIdentifier("w" + list.get(0).getHourly().get(5).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma6(image6);
+                hl.sethTmp6(list.get(0).getHourly().get(5).getTmp() + "℃");
+
+                hl.sethTime7(list.get(0).getHourly().get(6).getTime().substring(11));
+                int image7 = getResources().getIdentifier("w" + list.get(0).getHourly().get(6).getCond_code(), "drawable", "com.example.admin.xinyueapp");
+                hl.sethCondIma7(image7);
+                hl.sethTmp7(list.get(0).getHourly().get(6).getTmp() + "℃");
+
+                arrays_obj.add(hl);
                 for (int i = 0; i < list.get(0).getDaily_forecast().size(); i++) {
                     Alist.MyDataList.DaysList dl = new Alist.MyDataList.DaysList();
                     dl.setDate(list.get(0).getDaily_forecast().get(i).getDate());
@@ -211,6 +252,7 @@ public class HomePageActivity extends StartActivity {
                 tl.setTFlu(list.get(0).getLifestyle().get(2).getTxt());
                 tl.setTSpor(list.get(0).getLifestyle().get(3).getTxt());
                 arrays_obj.add(tl);
+
                 addapter.setData(arrays_obj);
                 mWeatherRv.setAdapter(addapter);
 /*
@@ -278,4 +320,5 @@ public class HomePageActivity extends StartActivity {
             }
         });
     }
+
 }

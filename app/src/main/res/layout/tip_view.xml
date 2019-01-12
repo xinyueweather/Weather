@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:text="小贴士"
         android:textSize="18sp"
-        />
+       />
     <LinearLayout
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:layout_weight="1"
@@ -44,6 +45,7 @@
 
 
     <LinearLayout
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,7 +64,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tdrsg"/>
+            android:id="@+id/tdrsg" />
 
     </LinearLayout>
     <View
@@ -70,6 +72,7 @@
     android:layout_height="1px"
     android:background="#000000"/>
     <LinearLayout
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:id="@+id/content"
@@ -98,6 +101,7 @@
     android:background="#000000"/>
 
     <LinearLayout
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -116,7 +120,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tSpor"/>
+            android:id="@+id/tSpor" />
     </LinearLayout>
 
     <View

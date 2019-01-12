@@ -107,14 +107,88 @@ public class Alist {
             private String hTmp;
             private int hCondIma;
 
+            private String hTime1;
+            private String hTmp1;
+            private int hCondIma1;
+
+            private String hTime2;
+            private String hTmp2;
+            private int hCondIma2;
+
+            private String hTime3;
+            private String hTmp3;
+            private int hCondIma3;
+
+            private String hTime4;
+            private String hTmp4;
+            private int hCondIma4;
+
+            private String hTime5;
+            private String hTmp5;
+            private int hCondIma5;
+
+            private String hTime6;
+            private String hTmp6;
+            private int hCondIma6;
+
+            private String hTime7;
+            private String hTmp7;
+            private int hCondIma7;
+
+
+
+
+
             public String gethTime(){ return this.hTime; }
             public void sethTime(String hTime){this.hTime=hTime;}
+            public String gethTime1(){ return this.hTime1; }
+            public void sethTime1(String hTime1){this.hTime1=hTime1;}
+            public String gethTime2(){ return this.hTime2; }
+            public void sethTime2(String hTime2){this.hTime2=hTime2;}
+            public String gethTime3(){ return this.hTime3; }
+            public void sethTime3(String hTime3){this.hTime3=hTime3;}
+            public String gethTime4(){ return this.hTime4; }
+            public void sethTime4(String hTime4){this.hTime4=hTime4;}
+            public String gethTime5(){ return this.hTime5; }
+            public void sethTime5(String hTime5){this.hTime5=hTime5;}
+            public String gethTime6(){ return this.hTime6; }
+            public void sethTime6(String hTime6){this.hTime6=hTime6;}
+            public String gethTime7(){ return this.hTime7; }
+            public void sethTime7(String hTime7){this.hTime7=hTime7;}
 
             public String gethTmp(){return this.hTmp;}
             public void sethTmp(String hTmp){ this.hTmp=hTmp;}
+            public String gethTmp1(){return this.hTmp1;}
+            public void sethTmp1(String hTmp1){ this.hTmp1=hTmp1;}
+            public String gethTmp2(){return this.hTmp2;}
+            public void sethTmp2(String hTmp2){ this.hTmp2=hTmp2;}
+            public String gethTmp3(){return this.hTmp3;}
+            public void sethTmp3(String hTmp3){ this.hTmp3=hTmp3;}
+            public String gethTmp4(){return this.hTmp4;}
+            public void sethTmp4(String hTmp4){ this.hTmp4=hTmp4;}
+            public String gethTmp5(){return this.hTmp5;}
+            public void sethTmp5(String hTmp5){ this.hTmp5=hTmp5;}
+            public String gethTmp6(){return this.hTmp6;}
+            public void sethTmp6(String hTmp6){ this.hTmp6=hTmp6;}
+            public String gethTmp7(){return this.hTmp7;}
+            public void sethTmp7(String hTmp7){ this.hTmp7=hTmp7;}
 
             public int gethCondIma(){ return this.hCondIma;}
             public void sethCondIma(int hCondIma){this.hCondIma=hCondIma;}
+            public int gethCondIma1(){ return this.hCondIma1;}
+            public void sethCondIma1(int hCondIma1){this.hCondIma1=hCondIma1;}
+            public int gethCondIma2(){ return this.hCondIma2;}
+            public void sethCondIma2(int hCondIma2){this.hCondIma2=hCondIma2;}
+            public int gethCondIma3(){ return this.hCondIma3;}
+            public void sethCondIma3(int hCondIma3){this.hCondIma3=hCondIma3;}
+            public int gethCondIma4(){ return this.hCondIma4;}
+            public void sethCondIma4(int hCondIma4){this.hCondIma4=hCondIma4;}
+            public int gethCondIma5(){ return this.hCondIma5;}
+            public void sethCondIma5(int hCondIma5){this.hCondIma5=hCondIma5;}
+            public int gethCondIma6(){ return this.hCondIma6;}
+            public void sethCondIma6(int hCondIma6){this.hCondIma6=hCondIma6;}
+            public int gethCondIma7(){ return this.hCondIma7;}
+            public void sethCondIma7(int hCondIma7){this.hCondIma7=hCondIma7;}
 
         }
 
