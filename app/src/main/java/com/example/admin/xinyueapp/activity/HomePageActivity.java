@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -150,8 +151,9 @@ public class HomePageActivity extends StartActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        Button addCity = (Button) findViewById(R.id.addCity);
 
+        //添加城市
+        Button addCity = (Button) findViewById(R.id.addCity);
         addCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +161,17 @@ public class HomePageActivity extends StartActivity {
                 startActivity(intent);
             }
         });
+
+        //进入设置
+        Button settings = (Button)findViewById(R.id.setting);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
