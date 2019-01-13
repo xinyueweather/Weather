@@ -14,6 +14,12 @@
         android:layout="@layout/setting_activity_preference"
         android:title="基本设置">
 
+
+        <Preference
+            android:layout="@layout/setting_item"
+            android:title="温度单位"
+            android:summary="摄氏度（℃）" />
+
         <SwitchPreference
             android:key="automatic_update"
             android:layout="@layout/setting_item"
