@@ -10,11 +10,15 @@ public class ViewHolderNow extends RecyclerView.ViewHolder {
     TextView mCurTemTv;
     TextView mCurStatusTv;
     TextView mTolTemTv;
+    TextView mAirQu;
+    TextView mUpdateTv;
 
     public ViewHolderNow(View view){
         super(view);
         mCurTemTv = (TextView)view.findViewById(R.id.curTem);
         mCurStatusTv = (TextView)view.findViewById(R.id.curStatus);
         mTolTemTv = (TextView)view.findViewById(R.id.tolTem);
+        mAirQu = (TextView)view.findViewById(R.id.airQui);
+        mUpdateTv = (TextView)view.findViewById(R.id.updateT);
     }
 }

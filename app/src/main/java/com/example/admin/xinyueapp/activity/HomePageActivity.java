@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -54,59 +55,101 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class HomePageActivity extends StartActivity {
 
-    /*private  Handler handler=new Handler(){
+    private  Handler handle = new Handler(){
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            boolean weather=false;
-            boolean air=false;
-            List<Object> arrays_obj = new ArrayList<>();
+            boolean flag=false;
+            boolean flag2=false;
 
-            if(msg.what==2){
-                ArrayList<String> record = msg.getData().getStringArrayList("air");
-                String pm25=record.get(0);
-                Log.i("Log","Onairpm  "+pm25);
-                air=true;
+            if(msg.what==1) {
+                Log.i("Log","onWHAT 2  1"+flag);
             }
-            if(msg.what==1){
-                ArrayList aa = msg.getData().getParcelableArrayList("aa");
-                String record =  new Gson().toJson(aa.get(0));
-             try{
-               JSONArray oo = new JSONArray(record);
-               Log.i("Log","aa.get(0) ? "+ oo);
-               for(int i=0;i<oo.length();i++){
-                   JSONObject jso = oo.getJSONObject(i);
-                   String now = jso.getString("nowCondTxt");
-                   Log.i("Log","aa "+now);
-               }
-             }
-               catch (JSONException e){
-                 e.printStackTrace();
-                 Log.i("Log","ddd");
-               }
-           //    JSONArray jo = new JSONArray(record);
+            if(msg.what==2 ){
+                Log.i("Log","onWHAT 2  2"+flag2);
+                ArrayList<String> als = msg.getData().getStringArrayList("air");
 
-            //  ArrayList list = bundle.getParcelableArrayList("list");
-             //   list2= (List<Object>) list.get(0);
 
-              //  addapter.setData();
-              //  mWeatherRv.setAdapter(addapter);
+                Log.i("Log","onWHAT 2"+als);
+                for(int i=0;i<als.size();i++){
+                    Log.i("Log","onWHAT 2: "+i+"  "+als.get(i));
+                }
+                TextView tv = (TextView)findViewById(R.id.airQui);
+                String qlty=als.get(6);
+                tv.setText(qlty);
+
+                TextView pt = (TextView)findViewById(R.id.updateT);
+                String ppt = als.get(7).substring(10);
+                pt.setText("发布时间: "+ppt);
+
+                TextView aqi = (TextView)findViewById(R.id.Aqi);
+                String Aqi = als.get(0);
+                aqi.setText(Aqi);
+
+                int a = Integer.parseInt(Aqi);
+                if(a>=0 && a<=50){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi1);
+                }else if(a>=51 && a<=100){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.w101);
+                }
+                else if(a>=101 && a<=150){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi3);
+                }else if(a>=151 && a<=200){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi4);
+                }else if(a>=201 && a<=300){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi5);
+                }else if(a > 300){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi6);
+                }
+                TextView pm = (TextView)findViewById(R.id.Pm);
+                String Pm = als.get(1);
+                pm.setText(Pm);
+
+                TextView no = (TextView)findViewById(R.id.NO);
+                String NO = als.get(2);
+                no.setText(NO);
+
+                TextView so = (TextView)findViewById(R.id.SO);
+                String SO = als.get(3);
+                so.setText(SO);
+
+                TextView o = (TextView)findViewById(R.id.O);
+                String O = als.get(4);
+                o.setText(O);
+
+                TextView co = (TextView)findViewById(R.id.CO);
+                String CO = als.get(5);
+                co.setText(CO);
 
 
             }
-
-
-
         }
-    };*/
+    };
     private RecyclerView mWeatherRv;
     static WeatherAdapter addapter = new WeatherAdapter();
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        if(intent.getStringExtra("cid")!=null)
+        {
+            getWeather(intent.getStringExtra("cid"));
+        }
+        super.onNewIntent(intent);
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         Button addCity = (Button) findViewById(R.id.addCity);
 
         addCity.setOnClickListener(new View.OnClickListener() {
@@ -131,21 +174,20 @@ public class HomePageActivity extends StartActivity {
         mWeatherRv.setLayoutManager(manager);
         HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
         HeConfig.switchToFreeServerNode();
-        //Context ctx= HomePageActivity.this;
-        SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
-        //存入数据
-        //SharedPreferences.Editor editor = sp.edit();
 
+        SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
+        //读取数据
         Set<String> sdata;
         sdata = sp.getStringSet("cid",null);
 
         if(sdata==null){
-            getWeather("");
+            getWeather("北京");
         }else{
             String[] cid = (String[])sdata.toArray(new String[sdata.size()]);
             Log.i("Log","onSdata.cid"+cid.length);
             getWeather(cid[0]);
         }
+
     }
 
     /**
@@ -153,7 +195,7 @@ public class HomePageActivity extends StartActivity {
      * @param location
      * @return
      */
-    private boolean getWeather(String location) {
+    private boolean getWeather(final String location) {
         HeWeather.getWeather(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherDataListBeansListener() {
             @Override
             public void onError(Throwable throwable) {
@@ -161,25 +203,19 @@ public class HomePageActivity extends StartActivity {
 
             @Override
             public void onSuccess(List<Weather> list) {
+                Log.i("Log","onWe "+ list);
                 final List<Object> arrays_obj = new ArrayList<>();
                 Alist.MyDataList.NowList nl = new Alist.MyDataList.NowList();
                 nl.setNowCondTxt(list.get(0).getNow().getCond_txt());
                 nl.setNowTem(list.get(0).getNow().getTmp() + "℃");
                 nl.setTolTem(list.get(0).getDaily_forecast().get(0).getTmp_max() + "℃ / " + list.get(0).getDaily_forecast().get(0).getTmp_min() + "℃");
+                nl.setAirQui("");
+
                 arrays_obj.add(nl);
-                //Log.i("Log", "ONSU" + nl.getCurTem());
+
                 TextView lo = (TextView)findViewById(R.id.showCity);
                 lo.setText(list.get(0).getBasic().getLocation());
-                /*for (int i = 0; i < list.get(0).getHourly().size(); i++) {
-                    Alist.MyDataList.HourlyList hl = new Alist.MyDataList.HourlyList();
-                    hl.sethTime(list.get(0).getHourly().get(i).getTime().substring(11));
-                    int imageId = getResources().getIdentifier("w" + list.get(0).getHourly().get(i).getCond_code(), "drawable", "com.example.admin.xinyueapp");
-                    hl.sethCondIma(imageId);
 
-                    hl.sethTmp(list.get(0).getHourly().get(i).getTmp() + "℃");
-                    arrays_obj.add(hl);
-                }*/
-                ///
                 //每小时温度
                 ///
                 Alist.MyDataList.HourlyList hl = new Alist.MyDataList.HourlyList();
@@ -224,6 +260,7 @@ public class HomePageActivity extends StartActivity {
                 hl.sethTmp7(list.get(0).getHourly().get(6).getTmp() + "℃");
 
                 arrays_obj.add(hl);
+
                 for (int i = 0; i < list.get(0).getDaily_forecast().size(); i++) {
                     Alist.MyDataList.DaysList dl = new Alist.MyDataList.DaysList();
                     dl.setDate(list.get(0).getDaily_forecast().get(i).getDate());
@@ -232,6 +269,12 @@ public class HomePageActivity extends StartActivity {
                     dl.setDCondIma(imageId);
                     arrays_obj.add(dl);
                 }
+
+                Alist.MyDataList.AirList al = new Alist.MyDataList.AirList();
+
+                arrays_obj.add(al);
+
+
                 Alist.MyDataList.ComfList cl = new Alist.MyDataList.ComfList();
                 cl.setCFi(list.get(0).getNow().getFl() + "℃");
                 cl.setCHum(list.get(0).getNow().getHum());
@@ -239,8 +282,7 @@ public class HomePageActivity extends StartActivity {
 
                 arrays_obj.add(cl);
 
-                Alist.MyDataList.AirList al = new Alist.MyDataList.AirList();
-                arrays_obj.add(al);
+
 
                 Alist.MyDataList.WindList wl = new Alist.MyDataList.WindList();
                 wl.setWindDir(list.get(0).getDaily_forecast().get(0).getWind_dir());
@@ -253,34 +295,19 @@ public class HomePageActivity extends StartActivity {
                 tl.setTFlu(list.get(0).getLifestyle().get(2).getTxt());
                 tl.setTSpor(list.get(0).getLifestyle().get(3).getTxt());
                 arrays_obj.add(tl);
-
                 addapter.setData(arrays_obj);
                 mWeatherRv.setAdapter(addapter);
-/*
-                Message msg=new Message();
-                Bundle b=new Bundle();
-
-
-                ArrayList aa = new ArrayList(); //这个aa用于在budnle中传递 需要传递的ArrayList<Object>
-
-                aa.add(arrays_obj);
-
-                b.putParcelableArrayList("aa",aa);
-                msg.setData(b);
+                Message msg = new Message();
                 msg.what=1;
-                handler.sendMessage(msg);*/
-
-/*
-                Alist.MyDataList.AirList al = new Alist.MyDataList.AirList();
-                arrays_obj.add(al);
-*/
+                handle.sendMessage(msg);
+                getAir(location);
             }
         });
         return true;
     }
 
-    private void getAir(){
-        HeWeather.getAir(this, "武汉", Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultAirBeanListener() {
+    private void getAir(String location){
+        HeWeather.getAir(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultAirBeanListener() {
             @Override
             public void onError(Throwable throwable) {
             }
@@ -289,6 +316,8 @@ public class HomePageActivity extends StartActivity {
                 Log.i("Log","onAir"+new Gson().toJson(list));
 
                 Bundle b = new Bundle();
+               // String ss = list.get(0).getAir_now_city().getQlty();
+               // String aqi = list.get(0).getAir_now_city().getAqi();
                 ArrayList<String> record=new ArrayList<>();
                 record.add(list.get(0).getAir_now_city().getAqi());
                 record.add(list.get(0).getAir_now_city().getPm25());
@@ -296,28 +325,14 @@ public class HomePageActivity extends StartActivity {
                 record.add(list.get(0).getAir_now_city().getSo2());
                 record.add(list.get(0).getAir_now_city().getO3());
                 record.add(list.get(0).getAir_now_city().getCo());
+                record.add(list.get(0).getAir_now_city().getQlty());
+                record.add(list.get(0).getAir_now_city().getPub_time());
                 b.putStringArrayList("air",record);
+
                 Message msg=new Message();
                 msg.setData(b);
                 msg.what=2;
-              //  handler.sendMessage(msg);
-             /*   TextView api= (TextView)findViewById(R.id.Aqi);
-                api.setText(list.get(0).getAir_now_city().getAqi());
-
-                TextView No2=(TextView)findViewById(R.id.NO2);
-                No2.setText(list.get(0).getAir_now_city().getNo2());
-
-                TextView So2= (TextView)findViewById(R.id.SO2);
-                So2.setText(list.get(0).getAir_now_city().getSo2());
-
-                TextView Pm=(TextView)findViewById(R.id.Pm2_5);
-                Pm.setText(list.get(0).getAir_now_city().getPm25());
-
-                TextView Co= (TextView)findViewById(R.id.CO);
-                Co.setText(list.get(0).getAir_now_city().getCo());
-
-                TextView o3 = (TextView)findViewById(R.id.O3);
-                o3.setText(list.get(0).getAir_now_city().getO3());*/
+                handle.sendMessage(msg);
             }
         });
     }

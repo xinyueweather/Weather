@@ -3,6 +3,7 @@ package com.example.admin.xinyueapp.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class AddLocationActivity extends Activity implements SearchView.OnQueryTextListener {
 
+
+
     private  int index =0;
 
     private ListView locationList;
@@ -44,6 +47,7 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
         locationList= findViewById(R.id.location_list);
@@ -83,9 +87,14 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                 editor.clear();
                 editor.putStringSet("cid",sdd);
                 editor.apply();
-
                // Log.d("xxxxxx",sp.getStringSet("cid",sdata));
-                Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + locations.get(position).getLocation() + ", 它属于: " + locations.get(position).getAdmin() + ", 它的 cid 是: "+ locations.get(position).getCid(), Toast.LENGTH_LONG).show();
+            //    Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + locations.get(position).getLocation() + ", 它属于: " + locations.get(position).getAdmin() + ", 它的 cid 是: "+ locations.get(position).getCid(), Toast.LENGTH_LONG).show();
+
+                //页面跳转
+                Intent intent = new Intent(AddLocationActivity.this, HomePageActivity.class);
+                intent.putExtra("cid",locations.get(position).getLocation());
+                startActivity(intent);
+
 
             }
         });

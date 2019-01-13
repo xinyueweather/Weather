@@ -64,6 +64,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderNow) holder).mCurTemTv.setText(data.getNowTmp());
             ((ViewHolderNow) holder).mCurStatusTv.setText(data.getNowCondTxt());
             ((ViewHolderNow) holder).mTolTemTv.setText(data.getTolTem());
+
         }else if (holder instanceof ViewHolderDays) {
             Alist.MyDataList.DaysList data = (Alist.MyDataList.DaysList) objects.get(position);
             ((ViewHolderDays) holder).mDateTv.setText(data.getDate());
@@ -74,7 +75,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderHourly) holder).mhTimeTv.setText(data.gethTime());
             ((ViewHolderHourly) holder).mhCondIv.setImageResource(data.gethCondIma());
             ((ViewHolderHourly) holder).mhTmpTv.setText(data.gethTmp());
-
             ((ViewHolderHourly) holder).mhTimeTv1.setText(data.gethTime1());
             ((ViewHolderHourly) holder).mhCondIv1.setImageResource(data.gethCondIma1());
             ((ViewHolderHourly) holder).mhTmpTv1.setText(data.gethTmp1());
@@ -108,13 +108,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderComf) holder).mCHum.setText(data.getCHum());
             ((ViewHolderComf) holder).mCUv.setText(data.getCUv());
         }else if(holder instanceof ViewHolderAir){
-          /*  Alist.MyDataList.AirList data = (Alist.MyDataList.AirList) objects.get(position);
-            ((ViewHolderAir) holder).mPM2_5.setText(data.getPM2_5());
-            ((ViewHolderAir) holder).mNO2.setText(data.getNO2());
-            ((ViewHolderAir) holder).mSO2.setText(data.getSO2());
-            ((ViewHolderAir) holder).mCO.setText(data.getCO());
-            ((ViewHolderAir) holder).mO3.setText(data.getO3());
-            ((ViewHolderAir) holder).mAqi.setText(data.getAqi());*/
+            Alist.MyDataList.AirList data = (Alist.MyDataList.AirList) objects.get(position);
+
         }else if(holder instanceof ViewHolderWind){
             Alist.MyDataList.WindList data = (Alist.MyDataList.WindList) objects.get(position);
             ((ViewHolderWind) holder).mWindSc.setText(data.getWindSc());
@@ -127,7 +122,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolderTip) holder).mtFlu.setText(data.getTFlu());
         }
     }
-
     @Override
     public int getItemViewType(int position) {
         if (objects.get(position) instanceof Alist.MyDataList.NowList) {

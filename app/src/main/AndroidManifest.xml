@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="true">
         <activity android:name=".activity.HomePageActivity"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme">
              <intent-filter>
                  <action android:name="android.intent.action.VIEW" />
@@ -29,6 +30,8 @@
         <activity android:name=".activity.StartActivity"/>
         <activity android:name=".activity.AddLocationActivity"
             android:theme="@style/AppTheme"
-            android:parentActivityName=".activity.HomePageActivity"/>
+            android:parentActivityName=".activity.HomePageActivity">
+        </activity>
+
     </application>
 </manifest>

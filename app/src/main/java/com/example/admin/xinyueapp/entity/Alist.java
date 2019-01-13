@@ -70,6 +70,8 @@ public class Alist {
             private String nowTmp;
             private String nowCondTxt;
             private String tolTem;
+            private String airQui;
+            private String updateT;
 
             public String getNowTmp(){return this.nowTmp;}
             public void setNowTem(String nowTmp){this.nowTmp=nowTmp;}
@@ -79,6 +81,12 @@ public class Alist {
 
             public String getTolTem(){return this.tolTem;}
             public void setTolTem(String tolTem){this.tolTem=tolTem;}
+
+            public String getAirQui(){return this.airQui;}
+            public void setAirQui(String airQui){this.airQui=airQui;}
+
+            public String getUpdateT(){return this.updateT;}
+            public void setUpdateT(String updateT){this.updateT=updateT;}
         }
         ///////////第二模块定义
         public static class DaysList{
@@ -211,29 +219,29 @@ public class Alist {
         ///////////第五模块定义
         public static class AirList{
             private String Aqi;
-            private String PM2_5;
-            private String NO2;
-            private String SO2;
-            private String O3;
+            private String PM;
+            private String NO;
+            private String SO;
+            private String O;
             private String CO;
 
             public String getAqi(){ return this.Aqi; }
             public void setAqi(String Aqi){ this.Aqi=Aqi;}
 
-            public String getPM2_5(){return this.PM2_5;}
-            public void setPM2_5(String PM2_5) { this.PM2_5 = PM2_5; }
+            public String getPM(){return this.PM;}
+            public void setPM(String PM) { this.PM = PM; }
 
-            public String getNO2(){ return this.NO2; }
-            public void setNO2(String NO2){this.NO2=NO2;}
+            public String getNO(){ return this.NO; }
+            public void setNO(String NO){this.NO=NO;}
 
-            public String getSO2(){ return this.SO2; }
-            public void setSO2(String SO2){this.SO2=SO2;}
+            public String getSO(){ return this.SO; }
+            public void setSO(String SO){this.SO=SO;}
 
-            public String getO3(){ return this.O3; }
-            public void setO3(String O3){this.NO2=O3;}
+            public String getO(){ return this.O; }
+            public void setO(String O){this.O=O;}
 
             public String getCO(){ return this.CO; }
-            public void setCO(String NO2){this.CO=CO;}
+            public void setCO(String CO){this.CO=CO;}
         }
 
         ///////////第六模块定义
