@@ -8,24 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppThemeNoandFull" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <!--
-    @android:style/Theme.NoTitleBar.Fullscreen..
-
-    Theme.AppCompat.Light.NoActionBar
-    -->
- <!--   <style name="AppTheme.Launcher" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-
-    </style>
-    -->
-<!--
-@android:style/Theme.NoTitleBar.Fullscreen
-Theme.AppCompat.Light.NoActionBar
--->
 </resources>
