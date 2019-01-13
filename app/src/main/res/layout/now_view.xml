@@ -13,7 +13,7 @@
         android:layout_weight="8"
         android:gravity="center"
         android:text="10℃"
-        android:textColor="#006aff"
+        android:textColor="#426286"
         android:textSize="100sp" />
 
     <TextView
